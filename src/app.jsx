@@ -9,9 +9,9 @@ function parseSize(size) {
     return `${size}cm`;
   }
   if (size < 100 * 1000) {
-    return `${Math.round(size * 100) / 10000}m`;
+    return `${Math.round(size * 100) / 100 / 100}m`;
   }
-  return `${Math.round(size / 100 / 10)}km`;
+  return `${Math.round(size / 100 / 10) / 100}km`;
 }
 
 function App() {

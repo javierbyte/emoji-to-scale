@@ -1,9 +1,10 @@
 {
   "name": "emoji-to-scale",
-  "description": "Your favorite emojis. To scale.",
+  "description": "Your favorite emojis. To scale (more or less).",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://javier.xyz/emoji-to-scale/",
+  "homepage_final": "https://javier.xyz/emoji-to-scale/",
+  "homepage": "https://emoji-to-scale.vercel.app",
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
