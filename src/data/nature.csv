@@ -57,7 +57,7 @@ EMOJI,SIZE (in cm),INFO
 🕷️,?,Spider
 🦂,?,Scorpion
 🦟,?,Mosquito
-🦠,?,Microbe
+🦠,0.0001,Microbe
 🌻,?,Sunflower
 🌲,?,Evergreen Tree
 🌳,?,Deciduous Tree
@@ -65,4 +65,4 @@ EMOJI,SIZE (in cm),INFO
 🌵,?,Cactus
 🦑,?,Squid
 🎄,?,Christmas Tree
-🌞,1392680km
+🌞,139268000000,Sol
