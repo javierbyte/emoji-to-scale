@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/emoji-to-scale/static/css/main.067c323c.chunk.css",
-    "main.js": "/emoji-to-scale/static/js/main.41b7ab95.chunk.js",
-    "main.js.map": "/emoji-to-scale/static/js/main.41b7ab95.chunk.js.map",
+    "main.js": "/emoji-to-scale/static/js/main.945bfc47.chunk.js",
+    "main.js.map": "/emoji-to-scale/static/js/main.945bfc47.chunk.js.map",
     "runtime-main.js": "/emoji-to-scale/static/js/runtime-main.639f13dd.js",
     "runtime-main.js.map": "/emoji-to-scale/static/js/runtime-main.639f13dd.js.map",
     "static/js/2.8eeb3cc6.chunk.js": "/emoji-to-scale/static/js/2.8eeb3cc6.chunk.js",
@@ -20,6 +20,6 @@
     "static/js/runtime-main.639f13dd.js",
     "static/js/2.8eeb3cc6.chunk.js",
     "static/css/main.067c323c.chunk.css",
-    "static/js/main.41b7ab95.chunk.js"
+    "static/js/main.945bfc47.chunk.js"
   ]
 }
