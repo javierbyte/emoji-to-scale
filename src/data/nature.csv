@@ -53,10 +53,10 @@ EMOJI,SIZE (in cm),INFO
 🐜,0.37,Ant
 🐝,1.5,Honeybee
 🪲,?,Beetle
-🐞,?,Lady Beetle
+🐞,1,Lady Bug
 🕷️,?,Spider
 🦂,?,Scorpion
-🦟,?,Mosquito
+🦟,0.3,Mosquito
 🦠,0.0001,Microbe
 🌻,?,Sunflower
 🌲,?,Evergreen Tree
@@ -66,3 +66,4 @@ EMOJI,SIZE (in cm),INFO
 🦑,?,Squid
 🎄,?,Christmas Tree
 🌞,139268000000,Sol
+🪰,0.6,Housefly
