@@ -56,6 +56,14 @@ a {
   text-align: center;
   line-height: 256px;
   transform-origin: bottom center;
+
+  color: transparent;
+  margin-bottom: 32px;
+}
+
+.emoji::selection {
+    color: transparent;
+    background: grey;
 }
 
 .emoji span {

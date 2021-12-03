@@ -1,4 +1,5 @@
 import "./style.css";
+import "./emoji.css";
 
 import React from 'react';
 import ReactDOM from 'react-dom';
