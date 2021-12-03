@@ -28,9 +28,9 @@ EMOJI,SIZE (in cm),INFO
 🦘,?,Kangaroo
 🦃,?,Turkey
 🐓,?,Rooster
-🐥,🥚*1.5,Chick
+🐥,🥚*1.3,Chick
 🦅,?,Eagle
-🦆,50,Duck
+🦆,40,Duck
 🦢,?,Swan
 🦉,55,Great Horned Owl
 🦤,?,Dodo
@@ -65,3 +65,4 @@ EMOJI,SIZE (in cm),INFO
 🌵,?,Cactus
 🦑,?,Squid
 🎄,?,Christmas Tree
+🌞,1392680km
