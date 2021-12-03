@@ -1,4 +1,4 @@
-import { useEffect, useState, Fragment } from 'react';
+import { useEffect, useState } from 'react';
 import { getData } from './getData.js';
 
 const WIDTH = 300;
@@ -37,96 +37,68 @@ function App() {
   }, []);
 
   return (
-    <Fragment>
-      <div className="bg" />
+    <div className="emoji-display">
+      {data.map(([emoji, size, label]) => {
+        const width = window.innerWidth;
+        let relativeDistance = compoundDistance - scroll;
 
-      <div className="header">
-        <div>
-          <h1>Emoji to Scale</h1>
-          <div style={{ marginTop: 8 }}>
-            <a href="https://github.com/javierbyte/emoji-to-scale">+ Info</a>
-          </div>
-          <div style={{ marginTop: 8 }}>
-            <a href="https://twitter.com/intent/tweet?text=Visualize%20emojis%20to%20scale.%20The%20chicken%20is%20not%20bigger%20than%20the%20car%20anymore!%20%F0%9F%90%93%F0%9F%9A%97%0A%20http%3A//javier.xyz/emoji-to-scale/">
-              + Tweet this!
-            </a>
-          </div>
-        </div>
-        <div style={{ flex: 1 }} />
-        <a href="https://javier.xyz/">
-          <h1>by javierbyte</h1>
-        </a>
-      </div>
+        if (relativeDistance < width / 2) {
+          relativeDistance =
+            relativeDistance * 0.25 + (0.75 * (relativeDistance + width * 0.5)) / 2;
+        }
 
-      <div className="footer">
-        <h2>
-          Scroll <span style={{ fontSize: 28 }}>↓</span>
-        </h2>
-      </div>
+        compoundDistance += WIDTH;
 
-      <div className="emoji-display">
-        {data.map(([emoji, size, label]) => {
-          const width = window.innerWidth;
-          let relativeDistance = compoundDistance - scroll;
+        if (relativeDistance < -WIDTH / 2 || relativeDistance > width - WIDTH / 2) {
+          return null;
+        }
 
-          if (relativeDistance < width / 2) {
-            relativeDistance =
-              relativeDistance * 0.25 + (0.75 * (relativeDistance + width * 0.5)) / 2;
-          }
+        let emojisToScale = [Math.floor(scroll / WIDTH), Math.ceil(scroll / WIDTH)];
 
-          compoundDistance += WIDTH;
+        emojisToScale = emojisToScale
+          .map((idx) => {
+            if (idx < 0) return 0;
+            if (idx > data.length - 1) return data.length - 1;
+            return idx;
+          })
+          .map((idx) => data[idx]);
 
-          if (relativeDistance < -WIDTH || relativeDistance > width) {
-            return null;
-          }
+        const floorCeilProgress = (scroll / WIDTH) % 1;
+        const floatScale =
+          floorCeilProgress * emojisToScale[1][1] + (1 - floorCeilProgress) * emojisToScale[0][1];
 
-          let emojisToScale = [Math.floor(scroll / WIDTH), Math.ceil(scroll / WIDTH)];
+        const calculatedScale = Math.min(size / floatScale, 64);
 
-          emojisToScale = emojisToScale
-            .map((idx) => {
-              if (idx < 0) return 0;
-              if (idx > data.length - 1) return data.length - 1;
-              return idx;
-            })
-            .map((idx) => data[idx]);
+        let opacity = 1;
+        if (calculatedScale > 3) {
+          const diff = (calculatedScale - 3) / 8;
+          opacity = Math.max(1 - diff, 0);
+        }
 
-          const floorCeilProgress = (scroll / WIDTH) % 1;
-          const floatScale =
-            floorCeilProgress * emojisToScale[1][1] + (1 - floorCeilProgress) * emojisToScale[0][1];
-
-          const calculatedScale = Math.min(size / floatScale, 1000);
-
-          let opacity = 1;
-          if (calculatedScale > 3) {
-            const diff = (calculatedScale - 3) / 8;
-            opacity = Math.max(1 - diff, 0);
-          }
-
-          return (
+        return (
+          <div
+            className="emoji-container"
+            style={{
+              transform: `translatex(${relativeDistance}px)`
+              // left: `${relativeDistance}px`
+            }}
+            key={emoji}
+          >
             <div
-              className="emoji-container"
+              className="emoji"
               style={{
-                // transform: `translatex(${relativeDistance}px)`
-                left: `${relativeDistance}px`
+                opacity,
+                transform: `scale(${calculatedScale}) translateY(10%)`
               }}
-              key={emoji}
             >
-              <div
-                className="emoji"
-                style={{
-                  opacity,
-                  transform: `scale(${calculatedScale}) translateY(10%)`
-                }}
-              >
-                {emoji}
-              </div>
-              <div>{parseSize(size)}</div>
-              <div>{label}</div>
+              {emoji}
             </div>
-          );
-        })}
-      </div>
-    </Fragment>
+            <div>{parseSize(size)}</div>
+            <div>{label}</div>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
