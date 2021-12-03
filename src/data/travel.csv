@@ -64,8 +64,8 @@ EMOJI,SIZE (in cm),INFO
 🚊,?,Tram
 🚝,3.67m,Monorail
 🚞,?,Mountain Railway
-🚋,14m,Tram Car
-🚌,12m,Bus
+🚋,14m,Tram Car (Length)
+🚌,12m,Bus (Length)
 🚍,?,Oncoming Bus
 🚎,11m,Trolleybus
 🚐,?,Minibus
@@ -75,13 +75,13 @@ EMOJI,SIZE (in cm),INFO
 🚔,?,Oncoming Police Car
 🚕,?,Taxi
 🚖,?,Oncoming Taxi
-🚗,,Automobile
+🚗,?,Automobile
 🚘,?,Oncoming Automobile
 🚙,?,Sport Utility Vehicle
 🛻,?,Pickup Truck
 🚚,?,Delivery Truck
 🚛,?,Articulated Lorry
-🚜,5m,Tractor
+🚜,5m,Tractor (Length)
 🏎️,?,Racing Car
 🏍️,?,Motorcycle
 🛵,?,Motor Scooter
@@ -90,7 +90,7 @@ EMOJI,SIZE (in cm),INFO
 🛴,?,Kick Scooter
 🚏,?,Bus Stop
 🛣️,?,Motorway
-🛤️,143,Railway Track
+🛤️,143,Railway Track (Length)
 ⛽,?,Fuel Pump
 🚨,?,Police Car Light
 🚥,?,Horizontal Traffic Light
@@ -103,8 +103,8 @@ EMOJI,SIZE (in cm),INFO
 ⛴️,?,Ferry
 🛥️,?,Motor Boat
 🚢,?,Ship
-✈️,30m,Airplane
-🛩️,9m,Small Airplane
+✈️,30m,Airplane (Length)
+🛩️,9m,Small Airplane (Length)
 🛫,?,Airplane Departure
 🛬,?,Airplane Arrival
 🪂,?,Parachute
@@ -125,6 +125,6 @@ EMOJI,SIZE (in cm),INFO
 🎑,?,Moon Viewing Ceremony
 💴,?,Yen Banknote
 💵,?,Dollar Banknote
-💶,14,Euro Banknote
+💶,?,Euro Banknote
 💷,?,Pound Banknote
 🗿,4m,Moai
