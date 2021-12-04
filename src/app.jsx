@@ -22,7 +22,7 @@ function App() {
 
   useEffect(() => {
     getData().then((res) => {
-      document.body.style.height = `${emojiSpace * res.length + window.innerHeight}px`;
+      document.body.style.height = `${emojiSpace * res.length + window.innerHeight - emojiSpace}px`;
       dataSet(res);
     });
 
@@ -40,7 +40,7 @@ function App() {
         const windowWidth = window.innerWidth;
         const compoundDistance = windowWidth / 2 + idx * emojiSpace;
 
-        let relativeDistance = compoundDistance - scroll;
+        let relativeDistance = compoundDistance - scroll - emojiSpace / 2;
 
         // Slow the scrolling at the beginning of the screen
         if (relativeDistance < windowWidth / 2) {

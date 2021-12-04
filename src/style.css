@@ -19,7 +19,7 @@ body {
   font-size: 18px;
   background-color: #eee;
   color: #000;
-  height: 30520px;
+  height: 33475px;
   font-family: monospace;
 }
 
@@ -34,7 +34,10 @@ body {
 
 a {
   color: #2980b9;
-  background-color: #2980b911;
+  background-color: #2980b918;
+}
+a:hover {
+  background-color: #2980b938;
 }
 
 .emoji-display {
@@ -73,6 +76,7 @@ a {
   padding: 12px;
   top: 0;
   left: 0;
+  z-index: 1;
 }
 
 .footer {
@@ -92,6 +96,10 @@ h2 {
   font-weight: 400;
   letter-spacing: -1px;
   padding: 4px;
+}
+
+a {
+  padding: 3px 4px;
 }
 
 h2 {
