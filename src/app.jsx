@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getData } from './getData.js';
 
-const WIDTH = 300;
+const emojiSpace = 300;
 
 function parseSize(size) {
   if (size < 2) {
@@ -20,12 +20,10 @@ function App() {
   const [data, dataSet] = useState([]);
   const [scroll, scrollSet] = useState(0);
 
-  let compoundDistance = window.innerWidth / 2;
-
   useEffect(() => {
     getData().then((res) => {
+      document.body.style.height = `${emojiSpace * res.length + window.innerHeight}px`;
       dataSet(res);
-      document.body.style.height = `${WIDTH * res.length + window.innerHeight}px`;
     });
 
     function loop() {
@@ -38,22 +36,27 @@ function App() {
 
   return (
     <div className="emoji-display">
-      {data.map(([emoji, size, label]) => {
-        const width = window.innerWidth;
+      {data.map(([emoji, size, label], idx) => {
+        const windowWidth = window.innerWidth;
+        const compoundDistance = windowWidth / 2 + idx * emojiSpace;
+
         let relativeDistance = compoundDistance - scroll;
 
-        if (relativeDistance < width / 2) {
+        // Slow the scrolling at the beginning of the screen
+        if (relativeDistance < windowWidth / 2) {
           relativeDistance =
-            relativeDistance * 0.25 + (0.75 * (relativeDistance + width * 0.5)) / 2;
+            relativeDistance * 0.1 + (0.9 * (relativeDistance + windowWidth * 0.5)) / 2;
         }
 
-        compoundDistance += WIDTH;
-
-        if (relativeDistance < -WIDTH / 2 || relativeDistance > width - WIDTH / 2) {
+        // Don't render the emoji if out of window
+        if (
+          relativeDistance < -emojiSpace * 0.75 ||
+          relativeDistance > windowWidth - emojiSpace * 0.1
+        ) {
           return null;
         }
 
-        let emojisToScale = [Math.floor(scroll / WIDTH), Math.ceil(scroll / WIDTH)];
+        let emojisToScale = [Math.floor(scroll / emojiSpace), Math.ceil(scroll / emojiSpace)];
 
         emojisToScale = emojisToScale
           .map((idx) => {
@@ -63,7 +66,7 @@ function App() {
           })
           .map((idx) => data[idx]);
 
-        const floorCeilProgress = (scroll / WIDTH) % 1;
+        const floorCeilProgress = (scroll / emojiSpace) % 1;
         const floatScale =
           floorCeilProgress * emojisToScale[1][1] + (1 - floorCeilProgress) * emojisToScale[0][1];
 

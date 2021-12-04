@@ -3,38 +3,23 @@ import dataTravel from './data/travel.csv';
 import dataNature from './data/nature.csv';
 import dataObjects from './data/objects.csv';
 
-function isNumber(val) {
-  return String(Number(val)) === val;
-}
+const dataSources = [dataRandom, dataTravel, dataNature, dataObjects];
 
 async function fetchMultiple() {
-  let dataCombined = [];
+  const dataSourcesPromises = dataSources.map((source) =>
+    fetch(source)
+      .then((response) => response.text())
+      .then((dataRaw) => {
+        return dataRaw.trim().split(`\n`).splice(1);
+      })
+  );
 
-  await fetch(dataRandom)
-    .then((response) => response.text())
-    .then((dataRaw) => {
-      dataCombined.push(...dataRaw.trim().split(`\n`).splice(1));
-    });
-
-  await fetch(dataTravel)
-    .then((response) => response.text())
-    .then((dataRaw) => {
-      dataCombined.push(...dataRaw.trim().split(`\n`).splice(1));
-    });
-
-  await fetch(dataNature)
-    .then((response) => response.text())
-    .then((dataRaw) => {
-      dataCombined.push(...dataRaw.trim().split(`\n`).splice(1));
-    });
-
-  await fetch(dataObjects)
-    .then((response) => response.text())
-    .then((dataRaw) => {
-      dataCombined.push(...dataRaw.trim().split(`\n`).splice(1));
-    });
-
-  return dataCombined;
+  return Promise.all(dataSourcesPromises).then((values) => {
+    return values.flat();
+  });
+}
+function isNumber(val) {
+  return String(Number(val)) === val;
 }
 
 export async function getData() {
