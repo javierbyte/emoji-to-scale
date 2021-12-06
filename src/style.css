@@ -19,7 +19,7 @@ body {
   font-size: 18px;
   background-color: #eee;
   color: #000;
-  height: 33475px;
+  height: 34375px;
   font-family: monospace;
 }
 
@@ -35,6 +35,7 @@ body {
 a {
   color: #2980b9;
   background-color: #2980b918;
+  padding: 3px 4px;
 }
 a:hover {
   background-color: #2980b938;
@@ -96,10 +97,6 @@ h2 {
   font-weight: 400;
   letter-spacing: -1px;
   padding: 4px;
-}
-
-a {
-  padding: 3px 4px;
 }
 
 h2 {

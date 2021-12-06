@@ -33,7 +33,7 @@ EMOJI,SIZE (in cm),INFO
 🦆,40,Duck
 🦢,?,Swan
 🦉,55,Great Horned Owl
-🦤,?,Dodo
+🦤,91,Dodo
 🦚,130,Peacock
 🦜,?,Parrot
 🐢,?,Turtle
@@ -43,8 +43,8 @@ EMOJI,SIZE (in cm),INFO
 🐋,?,Whale
 🐬,?,Dolphin
 🐟,?,Fish
-🐠,?,Tropical Fish
-🐡,?,Blowfish
+🐠,15,Angel Fish
+🐡,30,Blowfish
 🦈,?,Shark
 🐙,?,Octopus
 🐌,3.3,Snail

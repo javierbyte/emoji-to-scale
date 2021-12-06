@@ -22,7 +22,8 @@ function App() {
 
   useEffect(() => {
     getData().then((res) => {
-      document.body.style.height = `${emojiSpace * res.length + window.innerHeight - emojiSpace}px`;
+      const totalScrollRange = emojiSpace * res.length + window.innerHeight - emojiSpace;
+      document.body.style.height = `${totalScrollRange}px`;
       dataSet(res);
     });
 
