@@ -89,7 +89,7 @@ function App() {
             key={emoji}
           >
             <div
-              className="emoji"
+              className={"emoji emoji-"+encodeURI(emoji).replace(/%/g, '')}
               style={{
                 opacity,
                 transform: `scale(${calculatedScale}) translateY(10%)`
