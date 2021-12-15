@@ -73,6 +73,7 @@ export async function getData() {
       return [emoji[0], emoji[1], meta[emoji[0]].label];
     })
     .filter((emoji) => {
-      return emoji[1] !== '?';
+      // filter emojis to be at least 0.1mm in height
+      return emoji[1] > 0.01;
     });
 }
