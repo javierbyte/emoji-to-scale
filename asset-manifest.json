@@ -1,25 +1,18 @@
 {
   "files": {
-    "main.css": "/emoji-to-scale/static/css/main.76bbedee.chunk.css",
-    "main.js": "/emoji-to-scale/static/js/main.9e88fb58.chunk.js",
-    "main.js.map": "/emoji-to-scale/static/js/main.9e88fb58.chunk.js.map",
-    "runtime-main.js": "/emoji-to-scale/static/js/runtime-main.639f13dd.js",
-    "runtime-main.js.map": "/emoji-to-scale/static/js/runtime-main.639f13dd.js.map",
-    "static/js/2.8eeb3cc6.chunk.js": "/emoji-to-scale/static/js/2.8eeb3cc6.chunk.js",
-    "static/js/2.8eeb3cc6.chunk.js.map": "/emoji-to-scale/static/js/2.8eeb3cc6.chunk.js.map",
+    "main.css": "/emoji-to-scale/static/css/main.cdfe2fc5.css",
+    "main.js": "/emoji-to-scale/static/js/main.5ada224b.js",
+    "static/media/objects.csv": "/emoji-to-scale/static/media/objects.6170e730f38d105b036b.csv",
+    "static/media/travel.csv": "/emoji-to-scale/static/media/travel.a1375366b096fe6acf7d.csv",
     "index.html": "/emoji-to-scale/index.html",
-    "static/css/main.76bbedee.chunk.css.map": "/emoji-to-scale/static/css/main.76bbedee.chunk.css.map",
-    "static/js/2.8eeb3cc6.chunk.js.LICENSE.txt": "/emoji-to-scale/static/js/2.8eeb3cc6.chunk.js.LICENSE.txt",
-    "static/media/style.css": "/emoji-to-scale/static/media/bg.85658877.svg",
-    "static/media/nature.5ee3e119.csv": "/emoji-to-scale/static/media/nature.5ee3e119.csv",
-    "static/media/objects.824019ca.csv": "/emoji-to-scale/static/media/objects.824019ca.csv",
-    "static/media/random.fa8c1081.csv": "/emoji-to-scale/static/media/random.fa8c1081.csv",
-    "static/media/travel.a1375366.csv": "/emoji-to-scale/static/media/travel.a1375366.csv"
+    "static/media/nature.csv": "/emoji-to-scale/static/media/nature.5ee3e119ee53e2b59e32.csv",
+    "static/media/random.csv": "/emoji-to-scale/static/media/random.fa8c1081d8738574c79e.csv",
+    "static/media/bg.svg": "/emoji-to-scale/static/media/bg.85658877ef6b6c4668ba.svg",
+    "main.cdfe2fc5.css.map": "/emoji-to-scale/static/css/main.cdfe2fc5.css.map",
+    "main.5ada224b.js.map": "/emoji-to-scale/static/js/main.5ada224b.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.639f13dd.js",
-    "static/js/2.8eeb3cc6.chunk.js",
-    "static/css/main.76bbedee.chunk.css",
-    "static/js/main.9e88fb58.chunk.js"
+    "static/css/main.cdfe2fc5.css",
+    "static/js/main.5ada224b.js"
   ]
 }
