@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/emoji-to-scale/static/css/main.cdfe2fc5.css",
-    "main.js": "/emoji-to-scale/static/js/main.1763d2cb.js",
+    "main.js": "/emoji-to-scale/static/js/main.69e91fa1.js",
     "static/media/objects.csv": "/emoji-to-scale/static/media/objects.6170e730f38d105b036b.csv",
     "static/media/travel.csv": "/emoji-to-scale/static/media/travel.a1375366b096fe6acf7d.csv",
     "index.html": "/emoji-to-scale/index.html",
-    "static/media/nature.csv": "/emoji-to-scale/static/media/nature.5ee3e119ee53e2b59e32.csv",
+    "static/media/nature.csv": "/emoji-to-scale/static/media/nature.9e281b820dab726ffc8e.csv",
     "static/media/random.csv": "/emoji-to-scale/static/media/random.54a78211fb35aa3fc34b.csv",
     "static/media/bg.svg": "/emoji-to-scale/static/media/bg.85658877ef6b6c4668ba.svg",
     "main.cdfe2fc5.css.map": "/emoji-to-scale/static/css/main.cdfe2fc5.css.map",
-    "main.1763d2cb.js.map": "/emoji-to-scale/static/js/main.1763d2cb.js.map"
+    "main.69e91fa1.js.map": "/emoji-to-scale/static/js/main.69e91fa1.js.map"
   },
   "entrypoints": [
     "static/css/main.cdfe2fc5.css",
-    "static/js/main.1763d2cb.js"
+    "static/js/main.69e91fa1.js"
   ]
 }
