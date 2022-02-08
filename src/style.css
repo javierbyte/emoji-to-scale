@@ -9,18 +9,37 @@ html {
   box-sizing: inherit;
 }
 
-body,
-html {
+body {
   width: 100vw;
   overflow-x: hidden;
+  touch-action: pan-y;
 }
 
 body {
-  font-size: 18px;
+  font-size: 16px;
   background-color: #eee;
   color: #000;
-  height: 34375px;
+  height: 35575px;
   font-family: monospace;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0 0 8px;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -1px;
+  padding: 4px;
+}
+
+@media screen and (min-width: 1200px) {
+  body {
+    font-size: 18px;
+  }
+  h1 {
+    font-size: 22px;
+    margin: 0 0 12px;
+  }
 }
 
 .bg {
@@ -33,12 +52,18 @@ body {
 }
 
 a {
-  color: #2980b9;
-  background-color: #2980b918;
-  padding: 3px 4px;
+  color: #2378b0;
+  background-color: #d5dfe7ee;
+  padding: 4px;
+  text-decoration: none;
+  box-shadow: inset 0 -1px #2378b0;
+}
+a.discrete {
+  background-color: transparent;
+  box-shadow: inset 0 -1px #2378b080;
 }
 a:hover {
-  background-color: #2980b938;
+  background-color: #fff;
 }
 
 .emoji-display {
@@ -70,38 +95,40 @@ a:hover {
 }
 
 .header {
-  align-items: flex-start;
   position: fixed;
   display: flex;
-  width: 100vw;
+  flex-direction: column;
   padding: 12px;
   top: 0;
-  left: 0;
   z-index: 1;
+}
+.header-left {
+  align-items: flex-start;
+  left: 0;
+}
+.header-right {
+  align-items: flex-end;
+  right: 0;
+}
+.header a {
+  margin: 0 0 7px;
 }
 
 .footer {
+  font-size: 18px;
   position: fixed;
   display: flex;
+  align-content: center;
+  justify-content: center;
   width: 100vw;
-  padding: 12px;
   bottom: 0;
   left: 0;
-}
-
-h1,
-h2 {
-  font-size: 20px;
-  margin: 0;
-  line-height: 1;
-  font-weight: 400;
-  letter-spacing: -1px;
-  padding: 4px;
-}
-
-h2 {
   top: auto;
   bottom: 32px;
   width: 100vw;
-  text-align: center;
+  pointer-events: none;
+}
+.footer-arrow {
+  font-size: 22px;
+  margin: -4px 0 -4px 8px;
 }

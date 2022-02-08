@@ -22,7 +22,8 @@ function App() {
 
   useEffect(() => {
     getData().then((res) => {
-      const totalScrollRange = emojiSpace * res.length + window.innerHeight - emojiSpace;
+      const totalScrollRange =
+        emojiSpace * res.length + window.innerHeight - emojiSpace;
       document.body.style.height = `${totalScrollRange}px`;
       dataSet(res);
     });
@@ -46,7 +47,8 @@ function App() {
         // Slow the scrolling at the beginning of the screen
         if (relativeDistance < windowWidth / 2) {
           relativeDistance =
-            relativeDistance * 0.1 + (0.9 * (relativeDistance + windowWidth * 0.5)) / 2;
+            relativeDistance * 0.1 +
+            (0.9 * (relativeDistance + windowWidth * 0.5)) / 2;
         }
 
         // Don't render the emoji if out of window
@@ -57,7 +59,10 @@ function App() {
           return null;
         }
 
-        let emojisToScale = [Math.floor(scroll / emojiSpace), Math.ceil(scroll / emojiSpace)];
+        let emojisToScale = [
+          Math.floor(scroll / emojiSpace),
+          Math.ceil(scroll / emojiSpace),
+        ];
 
         emojisToScale = emojisToScale
           .map((idx) => {
@@ -69,7 +74,8 @@ function App() {
 
         const floorCeilProgress = (scroll / emojiSpace) % 1;
         const floatScale =
-          floorCeilProgress * emojisToScale[1][1] + (1 - floorCeilProgress) * emojisToScale[0][1];
+          floorCeilProgress * emojisToScale[1][1] +
+          (1 - floorCeilProgress) * emojisToScale[0][1];
 
         const calculatedScale = Math.min(size / floatScale, 64);
 
@@ -83,7 +89,7 @@ function App() {
           <div
             className="emoji-container"
             style={{
-              transform: `translatex(${relativeDistance}px)`
+              transform: `translatex(${relativeDistance}px)`,
               // left: `${relativeDistance}px`
             }}
             key={emoji}
@@ -92,7 +98,7 @@ function App() {
               className="emoji"
               style={{
                 opacity,
-                transform: `scale(${calculatedScale}) translateY(10%)`
+                transform: `scale(${calculatedScale}) translateY(10%)`,
               }}
             >
               {emoji}

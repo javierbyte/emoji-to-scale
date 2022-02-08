@@ -6,8 +6,8 @@
   "homepage": "https://javier.xyz/emoji-to-scale/",
   "homepage_vercel": "https://emoji-to-scale.vercel.app",
   "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.0.0-beta-24dd07bd2-20211208",
+    "react-dom": "^18.0.0-beta-24dd07bd2-20211208",
     "react-scripts": "^5.0.0"
   },
   "scripts": {
