@@ -57,7 +57,7 @@ EMOJI,SIZE (in cm),INFO
 🕷️,?,Spider
 🦂,?,Scorpion
 🦟,0.3,Mosquito
-🦠,?,Microbe
+🦠,0.00001,Coronavirus
 🌻,180,Sunflower
 🌲,?,Evergreen Tree
 🌳,?,Deciduous Tree
@@ -66,6 +66,7 @@ EMOJI,SIZE (in cm),INFO
 🦑,?,Squid
 🎄,?,Christmas Tree
 🌞,139268000000,Sun
+🌌,95000000000000000000000,Milky Way
 🪰,0.6,Housefly
 🦦,100,Otter
 🧬,6e-8,DNA
