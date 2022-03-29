@@ -1,10 +1,5 @@
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-
-/** @license React vundefined
+/**
+ * @license React
  * react-dom.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -13,7 +8,8 @@ object-assign
  * LICENSE file in the root directory of this source tree.
  */
 
-/** @license React vundefined
+/**
+ * @license React
  * react-jsx-runtime.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -22,7 +18,8 @@ object-assign
  * LICENSE file in the root directory of this source tree.
  */
 
-/** @license React vundefined
+/**
+ * @license React
  * react.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -31,7 +28,8 @@ object-assign
  * LICENSE file in the root directory of this source tree.
  */
 
-/** @license React vundefined
+/**
+ * @license React
  * scheduler.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
