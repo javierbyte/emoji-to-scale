@@ -19,6 +19,7 @@ function parseSize(size) {
 function App() {
   const [data, dataSet] = useState([]);
   const [scroll, scrollSet] = useState(0);
+  const [windowWidth, windowWidthSet] = useState(window.innerWidth);
 
   useEffect(() => {
     getData().then((res) => {
@@ -28,18 +29,53 @@ function App() {
       dataSet(res);
     });
 
-    function loop() {
-      const newScroll = window.pageYOffset;
-      scrollSet(newScroll);
-      window.requestAnimationFrame(loop);
+    let rafId;
+    function onScroll() {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        scrollSet(Math.round(window.scrollY));
+        rafId = null;
+      });
     }
-    window.requestAnimationFrame(loop);
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
+  useEffect(() => {
+    function onResize() {
+      windowWidthSet(window.innerWidth);
+    }
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  let floatScale = 1;
+  if (data.length > 0) {
+    const floorIdx = Math.max(
+      0,
+      Math.min(Math.floor(scroll / emojiSpace), data.length - 1)
+    );
+    const ceilIdx = Math.max(
+      0,
+      Math.min(Math.ceil(scroll / emojiSpace), data.length - 1)
+    );
+    const floorCeilProgress = (scroll / emojiSpace) % 1;
+    floatScale =
+      floorCeilProgress * data[ceilIdx][1] +
+      (1 - floorCeilProgress) * data[floorIdx][1];
+  }
+
   return (
-    <div className="emoji-display">
+    <div
+      className="emoji-display"
+      role="region"
+      aria-label="Emoji size comparison"
+    >
       {data.map(([emoji, size, label], idx) => {
-        const windowWidth = window.innerWidth;
         const compoundDistance = windowWidth / 2 + idx * emojiSpace;
 
         let relativeDistance = compoundDistance - scroll - emojiSpace / 2;
@@ -59,38 +95,32 @@ function App() {
           return null;
         }
 
-        let emojisToScale = [
-          Math.floor(scroll / emojiSpace),
-          Math.ceil(scroll / emojiSpace),
-        ];
+        const calculatedScaleR = Math.min(size / floatScale, 9);
+        const calculatedScale = Math.round(calculatedScaleR * 1000) / 1000;
 
-        emojisToScale = emojisToScale
-          .map((idx) => {
-            if (idx < 0) return 0;
-            if (idx > data.length - 1) return data.length - 1;
-            return idx;
-          })
-          .map((idx) => data[idx]);
-
-        const floorCeilProgress = (scroll / emojiSpace) % 1;
-        const floatScale =
-          floorCeilProgress * emojisToScale[1][1] +
-          (1 - floorCeilProgress) * emojisToScale[0][1];
-
-        const calculatedScale = Math.min(size / floatScale, 64);
+        // Render at higher font-size when upscaling to avoid pixelation.
+        // CSS scale() is only used for downscaling (<=1), which is lossless.
+        // Render at a higher font-size to avoid pixelation on upscale.
+        // The element stays at 256×256 for layout; the glyph overflows harmlessly.
+        // CSS scale() is only used for values ≤1 (downscaling), which is lossless.
+        const renderMultiplier = Math.max(1, calculatedScale);
+        const cssScale =
+          Math.round((calculatedScale / renderMultiplier) * 1000) / 1000;
+        const fontSize = 200 * renderMultiplier;
+        const lineHeight = 256 * renderMultiplier;
 
         let opacity = 1;
         if (calculatedScale > 3) {
-          const diff = (calculatedScale - 3) / 8;
+          const diff = (calculatedScale - 3) / 6;
           opacity = Math.max(1 - diff, 0);
         }
 
         return (
           <div
             className="emoji-container"
+            aria-label={`${label}, ${parseSize(size)}`}
             style={{
-              transform: `translatex(${relativeDistance}px)`,
-              // left: `${relativeDistance}px`
+              transform: `translateX(${relativeDistance}px)`,
             }}
             key={emoji}
           >
@@ -98,7 +128,9 @@ function App() {
               className="emoji"
               style={{
                 opacity,
-                transform: `scale(${calculatedScale}) translateY(10%)`,
+                fontSize: `${fontSize}px`,
+                lineHeight: `${lineHeight}px`,
+                transform: `scale(${cssScale}) translateY(10%)`,
               }}
             >
               {emoji}
