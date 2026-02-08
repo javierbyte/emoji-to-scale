@@ -1,2 +1,5 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
+Allow: /
+
+Sitemap: https://javier.xyz/emoji-to-scale/sitemap.xml
