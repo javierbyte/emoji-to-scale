@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { getData } from './getData.js';
 
 const emojiSpace = 300;
+
+const CATEGORIES = ['Animals', 'Nature', 'Objects', 'Landmarks'];
 
 function parseSize(size) {
   if (size < 2) {
@@ -16,16 +18,19 @@ function parseSize(size) {
   return `${Math.round(size / 100 / 10) / 100}km`;
 }
 
+function getMaxScroll(itemCount) {
+  return emojiSpace * itemCount + window.innerHeight - emojiSpace;
+}
+
 function App() {
   const [data, dataSet] = useState([]);
   const [scroll, scrollSet] = useState(0);
   const [windowWidth, windowWidthSet] = useState(window.innerWidth);
+  const [category, categorySet] = useState('');
+  const prevMaxScrollRef = useRef(0);
 
   useEffect(() => {
     getData().then((res) => {
-      const totalScrollRange =
-        emojiSpace * res.length + window.innerHeight - emojiSpace;
-      document.body.style.height = `${totalScrollRange}px`;
       dataSet(res);
     });
 
@@ -53,94 +58,125 @@ function App() {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
+  const filteredData = useMemo(() => {
+    if (!category) return data;
+    return data.filter(([, , , , tags]) => tags.includes(category));
+  }, [data, category]);
+
+  useEffect(() => {
+    if (filteredData.length === 0) return;
+    const prevMax = prevMaxScrollRef.current;
+    const pct = prevMax > 0 ? window.scrollY / prevMax : 0;
+
+    const newMax = getMaxScroll(filteredData.length);
+    document.body.style.height = `${newMax}px`;
+    prevMaxScrollRef.current = newMax;
+
+    if (prevMax > 0) {
+      window.scrollTo(0, pct * newMax);
+    }
+  }, [filteredData]);
+
   let floatScale = 1;
-  if (data.length > 0) {
+  if (filteredData.length > 0) {
     const floorIdx = Math.max(
       0,
-      Math.min(Math.floor(scroll / emojiSpace), data.length - 1)
+      Math.min(Math.floor(scroll / emojiSpace), filteredData.length - 1)
     );
     const ceilIdx = Math.max(
       0,
-      Math.min(Math.ceil(scroll / emojiSpace), data.length - 1)
+      Math.min(Math.ceil(scroll / emojiSpace), filteredData.length - 1)
     );
     const floorCeilProgress = (scroll / emojiSpace) % 1;
     floatScale =
-      floorCeilProgress * data[ceilIdx][1] +
-      (1 - floorCeilProgress) * data[floorIdx][1];
+      floorCeilProgress * filteredData[ceilIdx][1] +
+      (1 - floorCeilProgress) * filteredData[floorIdx][1];
   }
 
   return (
-    <div
-      className="emoji-display"
-      role="region"
-      aria-label="Emoji size comparison"
-    >
-      {data.map(([emoji, size, label], idx) => {
-        const compoundDistance = windowWidth / 2 + idx * emojiSpace;
+    <>
+      <div
+        className="emoji-display"
+        role="region"
+        aria-label="Emoji size comparison"
+      >
+        {filteredData.map(([emoji, size, label, isNew], idx) => {
+          const compoundDistance = windowWidth / 2 + idx * emojiSpace;
 
-        let relativeDistance = compoundDistance - scroll - emojiSpace / 2;
+          let relativeDistance = compoundDistance - scroll - emojiSpace / 2;
 
-        // Slow the scrolling at the beginning of the screen
-        if (relativeDistance < windowWidth / 2) {
-          relativeDistance =
-            relativeDistance * 0.1 +
-            (0.9 * (relativeDistance + windowWidth * 0.5)) / 2;
-        }
+          // Slow the scrolling at the beginning of the screen
+          if (relativeDistance < windowWidth / 2) {
+            relativeDistance =
+              relativeDistance * 0.1 +
+              (0.9 * (relativeDistance + windowWidth * 0.5)) / 2;
+          }
 
-        // Don't render the emoji if out of window
-        if (
-          relativeDistance < -emojiSpace * 0.75 ||
-          relativeDistance > windowWidth - emojiSpace * 0.1
-        ) {
-          return null;
-        }
+          // Don't render the emoji if out of window
+          if (
+            relativeDistance < -emojiSpace * 0.75 ||
+            relativeDistance > windowWidth - emojiSpace * 0.1
+          ) {
+            return null;
+          }
 
-        const calculatedScaleR = Math.min(size / floatScale, 9);
-        const calculatedScale = Math.round(calculatedScaleR * 1000) / 1000;
+          const calculatedScaleR = Math.min(size / floatScale, 9);
+          const calculatedScale = Math.round(calculatedScaleR * 1000) / 1000;
 
-        // Render at higher font-size when upscaling to avoid pixelation.
-        // CSS scale() is only used for downscaling (<=1), which is lossless.
-        // Render at a higher font-size to avoid pixelation on upscale.
-        // The element stays at 256×256 for layout; the glyph overflows harmlessly.
-        // CSS scale() is only used for values ≤1 (downscaling), which is lossless.
-        const renderMultiplier = Math.max(1, calculatedScale);
-        const cssScale =
-          Math.round((calculatedScale / renderMultiplier) * 1000) / 1000;
-        const fontSize = 200 * renderMultiplier;
-        const lineHeight = 256 * renderMultiplier;
+          let opacity = 1;
+          if (calculatedScale > 3) {
+            const diff = (calculatedScale - 3) / 6;
+            opacity = Math.max(1 - diff, 0);
+          }
 
-        let opacity = 1;
-        if (calculatedScale > 3) {
-          const diff = (calculatedScale - 3) / 6;
-          opacity = Math.max(1 - diff, 0);
-        }
-
-        return (
-          <div
-            className="emoji-container"
-            aria-label={`${label}, ${parseSize(size)}`}
-            style={{
-              transform: `translateX(${relativeDistance}px)`,
-            }}
-            key={emoji}
-          >
+          return (
             <div
-              className="emoji"
+              className="emoji-container"
+              aria-label={`${label}, ${parseSize(size)}`}
               style={{
-                opacity,
-                fontSize: `${fontSize}px`,
-                lineHeight: `${lineHeight}px`,
-                transform: `scale(${cssScale}) translateY(10%)`,
+                transform: `translateX(${relativeDistance}px)`,
               }}
+              key={emoji}
             >
-              {emoji}
+              <div
+                className={`emoji${isNew ? ' emoji-new' : ''}`}
+                style={{
+                  opacity,
+                  transform: `scale(${calculatedScale}) translateY(10%)`,
+                }}
+              >
+                <span className="emoji-glyph">
+                  {emoji}
+                  {isNew && (
+                    <div className="sparkle-particles">
+                      <span className="particle p1">✨</span>
+                      <span className="particle p2">✨</span>
+                      <span className="particle p3">✨</span>
+                      <span className="particle p4">✨</span>
+                      <span className="particle p5">✨</span>
+                    </div>
+                  )}
+                </span>
+              </div>
+              <div>{parseSize(size)}</div>
+              <div>{label}{isNew && <span className="sparkle">✦</span>}</div>
             </div>
-            <div>{parseSize(size)}</div>
-            <div>{label}</div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+      <select
+        className="category-select"
+        value={category}
+        onChange={(e) => categorySet(e.target.value)}
+      >
+        <option value="">All</option>
+        {CATEGORIES.map((cat) => (
+          <option key={cat} value={cat.toLowerCase()}>
+            {cat}
+          </option>
+        ))}
+      </select>
+    </>
   );
 }
 
