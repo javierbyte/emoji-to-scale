@@ -145,9 +145,9 @@ a {
 
 .speedometer {
   position: fixed;
-  bottom: 96px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  right: 1.5rem;
+  transform: translateY(-50%);
   z-index: 1;
   font-size: 1.5rem;
   letter-spacing: -1px;

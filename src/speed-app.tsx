@@ -23,6 +23,23 @@ const MOTION_BLUR_OPACITY = 0.1;
 // Only lanes moving at least this much faster than the reference get a trail.
 const MOTION_BLUR_MIN_RATIO = 1.1;
 
+// Per-emoji extra CSS transforms, applied *only* in the speed renderer. The
+// value is appended after the glyph's base transform (which centers and flips
+// it to face its direction of travel), so use relative ops like rotate/scale.
+const EMOJI_TRANSFORMS: Record<string, string> = {
+  '🚀': 'rotate(135deg) scaleY(-100%)',
+  '🌎': 'scaleX(-100%)',
+  '☄️': 'rotate(-45deg)',
+  '🛩️': 'scaleX(-100%)',
+  '🐌': 'scaleX(-100%)',
+  '🛫': 'scaleX(-100%)',
+};
+
+// Base transform every lane glyph already gets from CSS: centered and flipped
+// to face its travel direction. Rebuilt here so per-emoji transforms can be
+// appended on top of it inline.
+const GLYPH_BASE_TRANSFORM = 'translate(-50%, -50%) scaleX(-1)';
+
 // A lane is visible only while any part of it is on screen.
 function isLaneVisible(offsetY: number, viewportHeight: number): boolean {
   return Math.abs(offsetY) <= viewportHeight / 2 + laneHeight / 2;
@@ -56,13 +73,17 @@ function getReferenceSpeed(scrollY: number, data: EmojiSpeedData[]): number {
 function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
   const [scroll, scrollSet] = useState(0);
   const [windowSize, windowSizeSet] = useState({ width: 0, height: 0 });
-  // Bumped every animation frame to flush the new horizontal positions.
-  const [, tickSet] = useState(0);
 
   // Current horizontal offset (0..loopWidth) for each lane.
   const positionsRef = useRef<number[]>([]);
   // Whether each lane was on-screen on the previous frame.
   const visibleRef = useRef<boolean[]>([]);
+  // The mounted `.emoji` wrapper nodes, mapped to the lane and copy offset they
+  // represent. The animation loop writes their transforms directly each frame,
+  // so horizontal motion never triggers a React re-render.
+  const emojiNodesRef = useRef(
+    new Map<HTMLDivElement, { idx: number; dx: number }>()
+  );
 
   // Vertical scroll (rAF-throttled) — drives which lane is centered.
   useEffect(() => {
@@ -186,6 +207,9 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
           );
           const shadowSpacing = ratio * MOTION_BLUR_SPACING;
 
+          // Extra speed-renderer-only transform for this emoji, if configured.
+          const extraTransform = EMOJI_TRANSFORMS[emoji] ?? '';
+
           return (
             <div
               className="speed-lane"
@@ -218,9 +242,9 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
                         key={s}
                         aria-hidden
                         style={{
-                          transform: `translate(-50%, -50%) scaleX(-1) translateX(${
+                          transform: `${GLYPH_BASE_TRANSFORM} translateX(${
                             (s + 1) * shadowSpacing
-                          }px)`,
+                          }px) ${extraTransform}`,
                           // Fade each copy out the further it trails, so the
                           // blur reads as a streak instead of a flat haze.
                           opacity:
@@ -230,7 +254,18 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
                         {emoji}
                       </span>
                     ))}
-                  <span className="emoji-glyph">{emoji}</span>
+                  <span
+                    className="emoji-glyph"
+                    style={
+                      extraTransform
+                        ? {
+                            transform: `${GLYPH_BASE_TRANSFORM} ${extraTransform}`,
+                          }
+                        : undefined
+                    }
+                  >
+                    {emoji}
+                  </span>
                 </div>
               ))}
             </div>

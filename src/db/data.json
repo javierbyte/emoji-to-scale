@@ -107,24 +107,6 @@
       }
     ]
   },
-  "🏹": {
-    "tags": ["objects"],
-    "name": "Bow and Arrow",
-    "sources": [
-      {
-        "values": {
-          "height": {
-            "value": 198
-          },
-          "speed": {
-            "value": 300
-          }
-        },
-        "url": "https://en.wikipedia.org/wiki/English_longbow",
-        "description": "A ~2 m longbow or modern compound bow launches an arrow at roughly 300 km/h (about 280 fps)."
-      }
-    ]
-  },
   "🦇": {
     "tags": ["animals"],
     "name": "Bat",
@@ -577,9 +559,6 @@
         "values": {
           "height": {
             "value": 16300
-          },
-          "speed": {
-            "value": 250
           }
         },
         "url": "https://en.wikipedia.org/wiki/Falcons_Flight",
@@ -2197,7 +2176,7 @@
       }
     ]
   },
-  "✈️": {
+  "🛫": {
     "tags": ["objects"],
     "name": "Airplane",
     "sources": [
@@ -2306,9 +2285,6 @@
         "values": {
           "height": {
             "value": 16770
-          },
-          "speed": {
-            "value": 1.1
           }
         },
         "url": "https://en.wikipedia.org/wiki/High_Roller_(Ferris_wheel)",
