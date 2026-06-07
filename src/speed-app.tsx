@@ -14,6 +14,15 @@ const BASE_PX_PER_SEC = 150;
 const MAX_SPEED_RATIO = 12;
 const MIN_SPEED_RATIO = 1 / MAX_SPEED_RATIO;
 
+// Motion blur: trail copies of the main emoji behind it, spaced by relative
+// speed so faster lanes streak more. Opacity is the nearest copy's value and
+// fades linearly to ~0 at the tail. Shadow count, spacing, and opacity tunable.
+const MOTION_BLUR_SHADOWS = 12;
+const MOTION_BLUR_SPACING = 3;
+const MOTION_BLUR_OPACITY = 0.1;
+// Only lanes moving at least this much faster than the reference get a trail.
+const MOTION_BLUR_MIN_RATIO = 1.1;
+
 // A lane is visible only while any part of it is on screen.
 function isLaneVisible(offsetY: number, viewportHeight: number): boolean {
   return Math.abs(offsetY) <= viewportHeight / 2 + laneHeight / 2;
@@ -169,6 +178,14 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
 
           const x = positionsRef.current[idx] ?? 0;
 
+          // Same clamped ratio the animation uses, so blur spacing tracks the
+          // emoji's on-screen speed rather than its raw real-world speed.
+          const ratio = Math.max(
+            MIN_SPEED_RATIO,
+            Math.min(speed / referenceSpeed, MAX_SPEED_RATIO)
+          );
+          const shadowSpacing = ratio * MOTION_BLUR_SPACING;
+
           return (
             <div
               className="speed-lane"
@@ -187,6 +204,32 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
                   style={{ transform: `translateX(${x + dx}px)` }}
                   aria-hidden={dx !== 0}
                 >
+                  {/* Motion blur: trailing copies behind the main emoji only.
+                      The glyph is flipped (scaleX(-1)) to face its travel
+                      direction, so a positive local translateX trails behind it
+                      on screen. */}
+                  {/* Only blur lanes moving sufficiently faster than the
+                      reference; slower ones get no trail. */}
+                  {dx === 0 &&
+                    ratio > MOTION_BLUR_MIN_RATIO &&
+                    Array.from({ length: MOTION_BLUR_SHADOWS }, (_, s) => (
+                      <span
+                        className="emoji-glyph emoji-blur"
+                        key={s}
+                        aria-hidden
+                        style={{
+                          transform: `translate(-50%, -50%) scaleX(-1) translateX(${
+                            (s + 1) * shadowSpacing
+                          }px)`,
+                          // Fade each copy out the further it trails, so the
+                          // blur reads as a streak instead of a flat haze.
+                          opacity:
+                            MOTION_BLUR_OPACITY * (1 - s / MOTION_BLUR_SHADOWS),
+                        }}
+                      >
+                        {emoji}
+                      </span>
+                    ))}
                   <span className="emoji-glyph">{emoji}</span>
                 </div>
               ))}
