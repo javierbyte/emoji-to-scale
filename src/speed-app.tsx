@@ -17,7 +17,7 @@ const MIN_SPEED_RATIO = 1 / MAX_SPEED_RATIO;
 // Motion blur: trail copies of the main emoji behind it, spaced by relative
 // speed so faster lanes streak more. Opacity is the nearest copy's value and
 // fades linearly to ~0 at the tail. Shadow count, spacing, and opacity tunable.
-const MOTION_BLUR_SHADOWS = 12;
+const MOTION_BLUR_SHADOWS = 8;
 const MOTION_BLUR_SPACING = 3;
 const MOTION_BLUR_OPACITY = 0.1;
 // Only lanes moving at least this much faster than the reference get a trail.

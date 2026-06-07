@@ -116,6 +116,13 @@ a {
   will-change: transform;
 }
 
+/* min-width 640 */
+@media screen and (max-width: 640px) {
+  .speed-lane .emoji {
+    font-size: 100px;
+  }
+}
+
 /* Center the glyph in the lane and flip it so it faces its direction of travel. */
 .speed-lane .emoji span {
   bottom: auto;
