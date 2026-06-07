@@ -3,7 +3,7 @@
 Your favorite emojis. To scale (more or less). Inspired by
 [this joke](https://twitter.com/MarcBeddy/status/290598911851245568).
 
-[![emoji-to-scale](public/emojis-to-scale.jpg)](https://javier.xyz/emoji-to-scale/)
+[![emoji-to-scale](public/emoji-to-scale.jpg)](https://javier.xyz/emoji-to-scale/)
 
 ## How can I add more emojis or fix an emoji size?
 

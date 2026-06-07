@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { getData } from './getData.js';
 
@@ -25,7 +27,7 @@ function getMaxScroll(itemCount) {
 function App() {
   const [data, dataSet] = useState([]);
   const [scroll, scrollSet] = useState(0);
-  const [windowWidth, windowWidthSet] = useState(window.innerWidth);
+  const [windowWidth, windowWidthSet] = useState(0);
   const [category, categorySet] = useState('');
   const prevMaxScrollRef = useRef(0);
 
@@ -54,6 +56,7 @@ function App() {
     function onResize() {
       windowWidthSet(window.innerWidth);
     }
+    onResize();
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
