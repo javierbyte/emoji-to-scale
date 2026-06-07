@@ -56,3 +56,26 @@ export function getEmojiData(): EmojiData[] {
     .filter((item) => item.height > 0.01)
     .sort((a, b) => a.height - b.height);
 }
+
+export type EmojiSpeedData = {
+  emoji: string;
+  speed: number; // km/h
+  label: string;
+  tags: string[];
+};
+
+export function getEmojiSpeedData(): EmojiSpeedData[] {
+  return Object.entries(emojiDatabase)
+    .map(([emoji, entry]) => {
+      const speedSource = entry.sources.find((s) => s.values.speed);
+      const speed = speedSource?.values.speed?.value ?? 0;
+      return {
+        emoji,
+        speed,
+        label: entry.name,
+        tags: entry.tags || [],
+      };
+    })
+    .filter((item) => item.speed > 0)
+    .sort((a, b) => a.speed - b.speed);
+}

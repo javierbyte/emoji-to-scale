@@ -13,6 +13,7 @@ export default function Page() {
         <a href="https://github.com/javierbyte/emoji-to-scale">Source Code</a>
         <a href="https://www.youtube.com/watch?v=RiLBR6roAsM">YouTube Video</a>
         <a href="https://javier.xyz/pokemon-to-scale/">Pokémon Version</a>
+        <a href="https://javier.xyz/pokemon-to-scale/speed">Speed Version</a>
       </header>
 
       <footer className="footer">
