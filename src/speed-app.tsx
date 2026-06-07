@@ -14,6 +14,9 @@ const BASE_PX_PER_SEC = 150;
 const MAX_SPEED_RATIO = 12;
 const MIN_SPEED_RATIO = 1 / MAX_SPEED_RATIO;
 
+// Master switch for the motion-blur trail effect. Disabled for now.
+const MOTION_BLUR_ENABLED = false;
+
 // Motion blur: trail copies of the main emoji behind it, spaced by relative
 // speed so faster lanes streak more. Opacity is the nearest copy's value and
 // fades linearly to ~0 at the tail. Shadow count, spacing, and opacity tunable.
@@ -249,7 +252,8 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
                       on screen. */}
                   {/* Only blur lanes moving sufficiently faster than the
                       reference; slower ones get no trail. */}
-                  {dx === 0 &&
+                  {MOTION_BLUR_ENABLED &&
+                    dx === 0 &&
                     ratio > MOTION_BLUR_MIN_RATIO &&
                     Array.from({ length: MOTION_BLUR_SHADOWS }, (_, s) => (
                       <span
