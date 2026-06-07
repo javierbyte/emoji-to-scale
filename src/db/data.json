@@ -885,7 +885,6 @@
     ]
   },
   "🫪": {
-    "isNew": true,
     "tags": ["animals"],
     "name": "Distorted Face",
     "sources": [
@@ -982,7 +981,6 @@
     ]
   },
   "🪎": {
-    "isNew": true,
     "tags": ["objects"],
     "name": "Treasure Chest",
     "sources": [
@@ -1386,7 +1384,6 @@
     ]
   },
   "🫈": {
-    "isNew": true,
     "tags": ["animals"],
     "name": "Bigfoot",
     "sources": [
@@ -1493,7 +1490,6 @@
     ]
   },
   "🛘": {
-    "isNew": true,
     "tags": ["nature"],
     "name": "Landslide",
     "sources": [
@@ -1546,7 +1542,6 @@
     ]
   },
   "🫍": {
-    "isNew": true,
     "tags": ["animals"],
     "name": "Orca",
     "sources": [

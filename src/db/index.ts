@@ -18,7 +18,6 @@ export type DataSource = {
 };
 
 export type EmojiEntry = {
-  isNew?: boolean;
   tags?: string[];
   name: string;
   sources: DataSource[];
@@ -35,22 +34,25 @@ export const CATEGORIES = [
 
 export const emojiDatabase: EmojiDatabase = data as EmojiDatabase;
 
-export function getEmojiData(): [string, number, string, boolean, string[]][] {
+export type EmojiData = {
+  emoji: string;
+  height: number; // centimeters
+  label: string;
+  tags: string[];
+};
+
+export function getEmojiData(): EmojiData[] {
   return Object.entries(emojiDatabase)
     .map(([emoji, entry]) => {
       const heightSource = entry.sources.find((s) => s.values.height);
-      const size = heightSource?.values.height?.value ?? 0;
-      const label = entry.name;
-      const isNew = entry.isNew || false;
-      const tags = entry.tags || [];
-      return [emoji, size, label, isNew, tags] as [
-        string,
-        number,
-        string,
-        boolean,
-        string[],
-      ];
+      const height = heightSource?.values.height?.value ?? 0;
+      return {
+        emoji,
+        height,
+        label: entry.name,
+        tags: entry.tags || [],
+      };
     })
-    .filter(([, size]) => size > 0.01)
-    .sort((a, b) => a[1] - b[1]);
+    .filter((item) => item.height > 0.01)
+    .sort((a, b) => a.height - b.height);
 }

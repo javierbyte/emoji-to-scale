@@ -1,6 +1,9 @@
-import App from '../src/app.jsx';
+import EmojiToScaleApp from '../src/app';
+import { getEmojiData } from '../src/db';
 
 export default function Page() {
+  const data = getEmojiData();
+
   return (
     <>
       <div className="bg" />
@@ -27,7 +30,7 @@ export default function Page() {
           <h1>Emoji to Scale</h1>
           <p>Your favorite emojis. To scale (more or less).</p>
         </noscript>
-        <App />
+        <EmojiToScaleApp data={data} />
       </main>
     </>
   );
