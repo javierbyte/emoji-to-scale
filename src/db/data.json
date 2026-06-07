@@ -1,1382 +1,2330 @@
 {
-  "🦠": {
-    "tags": ["animals"],
-    "representations": [
+  "🦥": {
+    "tags": [
+      "animals"
+    ],
+    "name": "Sloth",
+    "sources": [
       {
-        "name": "Coronavirus",
-        "properties": [
-          { "propertyKey": "height", "value": 0.00001, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 45
+          },
+          "speed": {
+            "value": 0.27
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Three-toed_sloth",
+        "description": "A three-toed sloth is about 45 cm long and tops out around 0.27 km/h (4.6 m/min, in the trees) — the slowest land mammal."
+      }
+    ]
+  },
+  "🐬": {
+    "tags": [
+      "animals"
+    ],
+    "name": "Dolphin",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 300
+          },
+          "speed": {
+            "value": 35
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Bottlenose_dolphin",
+        "description": "A common bottlenose dolphin is about 3 m long and can burst up to about 35 km/h."
+      }
+    ]
+  },
+  "🐊": {
+    "tags": [
+      "animals"
+    ],
+    "name": "Crocodile",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 600
+          },
+          "speed": {
+            "value": 29
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Saltwater_crocodile",
+        "description": "A large male saltwater crocodile reaches about 6 m in length and can swim in short bursts of about 24-29 km/h."
+      }
+    ]
+  },
+  "🦈": {
+    "tags": [
+      "animals"
+    ],
+    "name": "Shark",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 500
+          },
+          "speed": {
+            "value": 50
+          }
+        },
+        "url": "https://www.nationalgeographic.com/animals/fish/facts/great-white-shark",
+        "description": "A large great white shark is about 5 m long (range 3.5-6 m) and can reach burst speeds approaching 50 km/h."
+      }
+    ]
+  },
+  "🐧": {
+    "tags": [
+      "animals"
+    ],
+    "name": "Penguin",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 115
+          },
+          "speed": {
+            "value": 9
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Emperor_penguin",
+        "description": "An emperor penguin, the largest penguin, is about 115 cm tall and swims at about 6-9 km/h, with short bursts up to ~19 km/h."
+      }
+    ]
+  },
+  "🛸": {
+    "tags": [
+      "objects"
+    ],
+    "name": "Flying Saucer",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 1524
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Roswell_incident",
+        "description": "A declassified 1950 FBI memo described flying saucers (per Roswell-era reports) as circular and about 50 ft (15.24 m) in diameter."
+      }
+    ]
+  },
+  "🚅": {
+    "tags": [
+      "objects"
+    ],
+    "name": "Shinkansen",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 363
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/N700_Series_Shinkansen",
+        "description": "An N700 series Shinkansen (Japanese bullet train) car is about 3.63 m tall."
+      }
+    ]
+  },
+  "🌪️": {
+    "tags": [
+      "nature"
+    ],
+    "name": "Tornado",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 150000
+          }
+        },
+        "url": "https://www.foxweather.com/learn/how-tall-is-a-tornado",
+        "description": "A tornado's visible funnel reaches from the ground to the storm's cloud base; tall tornadoes top out around 1,500 m. There is no official record for funnel height."
+      }
+    ]
+  },
+  "📡": {
+    "tags": [
+      "objects"
+    ],
+    "name": "Radio Telescope",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 8900
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Lovell_Telescope",
+        "description": "The Lovell Telescope at Jodrell Bank, a steerable dish radio telescope, stands about 89 m tall (76 m dish)."
+      }
+    ]
+  },
+  "🛕": {
+    "tags": [
+      "landmarks"
+    ],
+    "name": "Sri Ranganathaswamy Temple",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 7300
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/List_of_tallest_gopurams",
+        "description": "The Rajagopuram of Sri Ranganathaswamy Temple, Srirangam, is the tallest gopuram at 73 m."
+      }
+    ]
+  },
+  "🛖": {
+    "tags": [
+      "objects"
+    ],
+    "name": "Hut",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 400
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Rondavel",
+        "description": "A traditional African rondavel (round thatched hut) stands roughly 4 m tall (walls plus a conical roof rising 2-4 m)."
+      }
+    ]
+  },
+  "🚁": {
+    "tags": [
+      "objects"
+    ],
+    "name": "Helicopter",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 285
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Bell_206",
+        "description": "A Bell 206 JetRanger, a common light helicopter, is 2.85 m tall on its skids."
+      }
+    ]
+  },
+  "🥌": {
+    "tags": [
+      "objects"
+    ],
+    "name": "Curling Stone",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 11.4
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Curling",
+        "description": "A regulation curling stone has a minimum height of 11.4 cm (4.5 in)."
+      }
+    ]
+  },
+  "🪳": {
+    "tags": [
+      "animals"
+    ],
+    "name": "Cockroach",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 4
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/American_cockroach",
+        "description": "An adult American cockroach is about 4 cm in body length (the largest common house cockroach)."
+      }
+    ]
+  },
+  "🦅": {
+    "tags": [
+      "animals"
+    ],
+    "name": "Eagle",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 61
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Bald_eagle",
+        "description": "A bald eagle stands roughly 61 cm tall (body length 70-102 cm, wingspan up to ~2.3 m)."
+      }
+    ]
+  },
+  "🧌": {
+    "tags": [
+      "animals"
+    ],
+    "name": "Troll",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 366
+          }
+        },
+        "url": "https://harrypotter.fandom.com/wiki/Mountain_troll",
+        "description": "A mountain troll in the Harry Potter universe stands twelve feet (about 366 cm) tall, the largest breed of troll."
+      }
+    ]
+  },
+  "🏀": {
+    "tags": [
+      "objects"
+    ],
+    "name": "Basketball",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 24
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Basketball_(ball)",
+        "description": "A regulation size 7 basketball is about 24 cm in diameter (circumference ~75 cm)."
+      }
+    ]
+  },
+  "⚽": {
+    "tags": [
+      "objects"
+    ],
+    "name": "Soccer Ball",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 22
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Ball_(association_football)",
+        "description": "A regulation size 5 football is about 22 cm in diameter (circumference 68-70 cm)."
+      }
+    ]
+  },
+  "🎾": {
+    "tags": [
+      "objects"
+    ],
+    "name": "Tennis Ball",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 6.7
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Tennis_ball",
+        "description": "A regulation tennis ball is 6.54-6.86 cm in diameter (about 6.7 cm)."
+      }
+    ]
+  },
+  "⚾": {
+    "tags": [
+      "objects"
+    ],
+    "name": "Baseball",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 7.4
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Baseball_(ball)",
+        "description": "A regulation baseball is about 7.4 cm in diameter (circumference 22.9-23.5 cm)."
+      }
+    ]
+  },
+  "🐢": {
+    "tags": [
+      "animals"
+    ],
+    "name": "Tortoise",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 80
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Gal%C3%A1pagos_tortoise",
+        "description": "A Galápagos giant tortoise stands roughly 80 cm tall overall (recorded shell lengths reach ~1.3-1.5 m)."
+      }
+    ]
+  },
+  "🎧": {
+    "tags": [
+      "objects"
+    ],
+    "name": "AirPods Max",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 18.7
+          }
+        },
+        "url": "https://support.apple.com/en-us/111858",
+        "description": "Apple's official tech specs list the AirPods Max height as 187.3 mm (18.7 cm), including cushions."
+      }
+    ]
+  },
+  "👠": {
+    "tags": [
+      "objects"
+    ],
+    "name": "Stiletto",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 12
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Stiletto_heel",
+        "description": "A typical stiletto heel is about 9-10 cm tall; the shoe as it stands reaches roughly 12 cm at the top of the heel counter."
+      }
+    ]
+  },
+  "🌮": {
+    "tags": [
+      "objects"
+    ],
+    "name": "Taco",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 8
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Taco",
+        "description": "A standard taco uses a ~15 cm tortilla; folded and filled it stands roughly 8 cm tall."
+      }
+    ]
+  },
+  "🎢": {
+    "tags": [
+      "objects"
+    ],
+    "name": "Falcon's Flight",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 16300
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Falcons_Flight",
+        "description": "Falcon's Flight at Six Flags Qiddiya City, the world's tallest operating roller coaster (opened Dec 2025), has a structure height of 163 m."
+      }
+    ]
+  },
+  "🍣": {
+    "tags": [
+      "objects"
+    ],
+    "name": "Nigiri",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 3
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Sushi",
+        "description": "A piece of nigiri sushi sits about 3 cm tall (rice base ~1.5-2 cm plus the fish topping)."
+      }
+    ]
+  },
+  "🦠": {
+    "tags": [
+      "animals"
+    ],
+    "name": "Coronavirus",
+    "sources": [
+      {
+        "values": {
+          "height": {
+            "value": 0.00001
+          }
+        }
       }
     ]
   },
   "🧬": {
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "DNA",
+    "sources": [
       {
-        "name": "DNA",
-        "properties": [
-          { "propertyKey": "height", "value": 6e-8, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 6e-8
+          }
+        }
       }
     ]
   },
   "🦟": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Mosquito",
+    "sources": [
       {
-        "name": "Mosquito",
-        "properties": [
-          { "propertyKey": "height", "value": 0.3, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 0.3
+          }
+        }
       }
     ]
   },
   "🐜": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Ant",
+    "sources": [
       {
-        "name": "Ant",
-        "properties": [
-          { "propertyKey": "height", "value": 0.37, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 0.37
+          }
+        }
       }
     ]
   },
   "🪰": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Housefly",
+    "sources": [
       {
-        "name": "Housefly",
-        "properties": [
-          { "propertyKey": "height", "value": 0.6, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 0.6
+          }
+        }
       }
     ]
   },
   "🐞": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Lady Bug",
+    "sources": [
       {
-        "name": "Lady Bug",
-        "properties": [
-          { "propertyKey": "height", "value": 1, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 1
+          }
+        }
       }
     ]
   },
   "🐝": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Honeybee",
+    "sources": [
       {
-        "name": "Honeybee",
-        "properties": [
-          { "propertyKey": "height", "value": 1.5, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 1.5
+          }
+        }
       }
     ]
   },
   "🎲": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Game Die",
+    "sources": [
       {
-        "name": "Game Die",
-        "properties": [
-          { "propertyKey": "height", "value": 1.9, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 1.9
+          }
+        }
       }
     ]
   },
   "💍": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Ring",
+    "sources": [
       {
-        "name": "Ring",
-        "properties": [
-          { "propertyKey": "height", "value": 2, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 2
+          }
+        }
       }
     ]
   },
   "🦷": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Tooth",
+    "sources": [
       {
-        "name": "Tooth",
-        "properties": [
-          { "propertyKey": "height", "value": 2, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 2
+          }
+        }
       }
     ]
   },
   "📎": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Paperclip",
+    "sources": [
       {
-        "name": "Paperclip",
-        "properties": [
-          { "propertyKey": "height", "value": 2.8, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 2.8
+          }
+        }
       }
     ]
   },
   "🌸": {
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "Cherry Blossom",
+    "sources": [
       {
-        "name": "Cherry Blossom",
-        "properties": [
-          { "propertyKey": "height", "value": 3, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 3
+          }
+        }
       }
     ]
   },
   "🍀": {
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "Four Leaf Clover",
+    "sources": [
       {
-        "name": "Four Leaf Clover",
-        "properties": [
-          { "propertyKey": "height", "value": 3, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 3
+          }
+        }
       }
     ]
   },
   "🐌": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Snail",
+    "sources": [
       {
-        "name": "Snail",
-        "properties": [
-          { "propertyKey": "height", "value": 3.3, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 3.3
+          }
+        }
       }
     ]
   },
   "💋": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Kiss Mark",
+    "sources": [
       {
-        "name": "Kiss Mark",
-        "properties": [
-          { "propertyKey": "height", "value": 4, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 4
+          }
+        }
       }
     ]
   },
   "💳": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Credit Card",
+    "sources": [
       {
-        "name": "Credit Card",
-        "properties": [
-          { "propertyKey": "height", "value": 5.5, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 5.5
+          }
+        }
       }
     ]
   },
   "🍪": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Cookie",
+    "sources": [
       {
-        "name": "Cookie",
-        "properties": [
-          { "propertyKey": "height", "value": 6, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 6
+          }
+        }
       }
     ]
   },
   "🥚": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Egg",
+    "sources": [
       {
-        "name": "Egg",
-        "properties": [
-          { "propertyKey": "height", "value": 7, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 7
+          }
+        }
       }
     ]
   },
   "🐁": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Mouse",
+    "sources": [
       {
-        "name": "Mouse",
-        "properties": [
-          { "propertyKey": "height", "value": 7, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 7
+          }
+        }
       }
     ]
   },
   "💶": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Euro Banknote",
+    "sources": [
       {
-        "name": "Euro Banknote",
-        "properties": [
-          { "propertyKey": "height", "value": 8.2, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 8.2
+          }
+        }
       }
     ]
   },
   "🐥": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Chick",
+    "sources": [
       {
-        "name": "Chick",
-        "properties": [
-          { "propertyKey": "height", "value": 9.1, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 9.1
+          }
+        }
       }
     ]
   },
   "☕️": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Cup of Coffee",
+    "sources": [
       {
-        "name": "Cup of Coffee",
-        "properties": [
-          { "propertyKey": "height", "value": 10, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 10
+          }
+        }
       }
     ]
   },
   "📷": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Camera",
+    "sources": [
       {
-        "name": "Camera",
-        "properties": [
-          { "propertyKey": "height", "value": 11, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 7.5
+          }
+        },
+        "url": "https://www.fujifilm-x.com/global/products/cameras/x100vi/specifications/",
+        "description": "A Fujifilm X100VI compact camera is 74.8 mm (7.5 cm) tall."
       }
     ]
   },
   "💌": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Love Letter",
+    "sources": [
       {
-        "name": "Love Letter",
-        "properties": [
-          { "propertyKey": "height", "value": 11.5, "source": [] }
-        ]
-      }
-    ]
-  },
-  "❤️": {
-    "tags": ["animals"],
-    "representations": [
-      {
-        "name": "Red Heart",
-        "properties": [
-          { "propertyKey": "height", "value": 12, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 11.5
+          }
+        }
       }
     ]
   },
   "🫀": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Heart",
+    "sources": [
       {
-        "name": "Heart",
-        "properties": [
-          { "propertyKey": "height", "value": 12, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 12
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Heart",
+        "description": "The average adult human heart is about 12 cm in length (roughly the size of a fist)."
       }
     ]
   },
   "🌷": {
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "Tulip",
+    "sources": [
       {
-        "name": "Tulip",
-        "properties": [
-          { "propertyKey": "height", "value": 12, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 12
+          }
+        }
       }
     ]
   },
   "🧉": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Mate",
+    "sources": [
       {
-        "name": "Mate",
-        "properties": [
-          { "propertyKey": "height", "value": 14, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 14
+          }
+        }
       }
     ]
   },
   "🐠": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Angel Fish",
+    "sources": [
       {
-        "name": "Angel Fish",
-        "properties": [
-          { "propertyKey": "height", "value": 15, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 15
+          }
+        }
       }
     ]
   },
   "📏": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Straight Ruler",
+    "sources": [
       {
-        "name": "Straight Ruler",
-        "properties": [
-          { "propertyKey": "height", "value": 15, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 15
+          }
+        }
       }
     ]
   },
   "🧠": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Brain",
+    "sources": [
       {
-        "name": "Brain",
-        "properties": [
-          { "propertyKey": "height", "value": 15, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 15
+          }
+        }
       }
     ]
   },
   "📱": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Mobile Phone",
+    "sources": [
       {
-        "name": "Mobile Phone",
-        "properties": [
-          { "propertyKey": "height", "value": 15.5, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 15.5
+          }
+        }
       }
     ]
   },
   "🍶": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Sake",
+    "sources": [
       {
-        "name": "Sake",
-        "properties": [
-          { "propertyKey": "height", "value": 17.5, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 17.5
+          }
+        }
       }
     ]
   },
   "👌": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "OK Hand",
+    "sources": [
       {
-        "name": "OK Hand",
-        "properties": [
-          { "propertyKey": "height", "value": 18, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 18
+          }
+        }
       }
     ]
   },
   "🍺": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Beer Mug",
+    "sources": [
       {
-        "name": "Beer Mug",
-        "properties": [
-          { "propertyKey": "height", "value": 18, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 18
+          }
+        }
       }
     ]
   },
   "🍌": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Banana",
+    "sources": [
       {
-        "name": "Banana",
-        "properties": [
-          { "propertyKey": "height", "value": 19, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 19
+          }
+        }
       }
     ]
   },
   "💻": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Laptop",
+    "sources": [
       {
-        "name": "Laptop",
-        "properties": [
-          { "propertyKey": "height", "value": 24, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 24
+          }
+        }
       }
     ]
   },
   "🫁": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Lungs",
+    "sources": [
       {
-        "name": "Lungs",
-        "properties": [
-          { "propertyKey": "height", "value": 24, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 24
+          }
+        }
       }
     ]
   },
   "🐈": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Cat",
+    "sources": [
       {
-        "name": "Cat",
-        "properties": [
-          { "propertyKey": "height", "value": 25, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 25
+          }
+        }
       }
     ]
   },
   "😂": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Face with Tears of Joy",
+    "sources": [
       {
-        "name": "Face with Tears of Joy",
-        "properties": [
-          { "propertyKey": "height", "value": 26, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 26
+          }
+        }
       }
     ]
   },
-  "\uD83E\uDEEA": {
+  "🫪": {
     "isNew": true,
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Distorted Face",
+    "sources": [
       {
-        "name": "Distorted Face",
-        "properties": [
-          { "propertyKey": "height", "value": 26, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 26
+          }
+        }
       }
     ]
   },
   "💪": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Flexed Biceps",
+    "sources": [
       {
-        "name": "Flexed Biceps",
-        "properties": [
-          { "propertyKey": "height", "value": 30, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 30
+          }
+        }
       }
     ]
   },
   "🐡": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Blowfish",
+    "sources": [
       {
-        "name": "Blowfish",
-        "properties": [
-          { "propertyKey": "height", "value": 30, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 30
+          }
+        }
       }
     ]
   },
   "🐓": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Rooster",
+    "sources": [
       {
-        "name": "Rooster",
-        "properties": [
-          { "propertyKey": "height", "value": 35, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 35
+          }
+        }
       }
     ]
   },
   "🐇": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Rabbit",
+    "sources": [
       {
-        "name": "Rabbit",
-        "properties": [
-          { "propertyKey": "height", "value": 35, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 35
+          }
+        }
       }
     ]
   },
   "🦆": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Duck",
+    "sources": [
       {
-        "name": "Duck",
-        "properties": [
-          { "propertyKey": "height", "value": 40, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 40
+          }
+        }
       }
     ]
   },
   "🔥": {
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "Fire",
+    "sources": [
       {
-        "name": "Fire",
-        "properties": [
-          { "propertyKey": "height", "value": 40, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 40
+          }
+        }
       }
     ]
   },
-  "\uD83E\uDE8E": {
+  "🪎": {
     "isNew": true,
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Treasure Chest",
+    "sources": [
       {
-        "name": "Treasure Chest",
-        "properties": [
-          { "propertyKey": "height", "value": 45, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 45
+          }
+        }
       }
     ]
   },
   "🐩": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Poodle",
+    "sources": [
       {
-        "name": "Poodle",
-        "properties": [
-          { "propertyKey": "height", "value": 45, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 45
+          }
+        }
       }
     ]
   },
   "🖥️": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "iMac",
+    "sources": [
       {
-        "name": "iMac",
-        "properties": [
-          { "propertyKey": "height", "value": 51, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 51
+          }
+        }
       }
     ]
   },
   "🦉": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Great Horned Owl",
+    "sources": [
       {
-        "name": "Great Horned Owl",
-        "properties": [
-          { "propertyKey": "height", "value": 55, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 55
+          }
+        }
       }
     ]
   },
   "🐒": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Macaque",
+    "sources": [
       {
-        "name": "Macaque",
-        "properties": [
-          { "propertyKey": "height", "value": 56, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 56
+          }
+        }
       }
     ]
   },
   "🐕": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "German Shepherd",
+    "sources": [
       {
-        "name": "German Shepherd",
-        "properties": [
-          { "propertyKey": "height", "value": 65, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 65
+          }
+        }
       }
     ]
   },
   "🐐": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Goat",
+    "sources": [
       {
-        "name": "Goat",
-        "properties": [
-          { "propertyKey": "height", "value": 76, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 76
+          }
+        }
       }
     ]
   },
   "🐖": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Pig",
+    "sources": [
       {
-        "name": "Pig",
-        "properties": [
-          { "propertyKey": "height", "value": 77, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 77
+          }
+        }
       }
     ]
   },
   "🦤": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Dodo",
+    "sources": [
       {
-        "name": "Dodo",
-        "properties": [
-          { "propertyKey": "height", "value": 91, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 91
+          }
+        }
       }
     ]
   },
   "🦦": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Otter",
+    "sources": [
       {
-        "name": "Otter",
-        "properties": [
-          { "propertyKey": "height", "value": 100, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 100
+          }
+        }
       }
     ]
   },
-  "\uD83E\uDEEF": {
+  "🫯": {
     "isNew": true,
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Fight Cloud",
+    "sources": [
       {
-        "name": "Fight Cloud",
-        "properties": [
-          { "propertyKey": "height", "value": 100, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 100
+          }
+        }
       }
     ]
   },
   "🐆": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Leopard",
+    "sources": [
       {
-        "name": "Leopard",
-        "properties": [
-          { "propertyKey": "height", "value": 105, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 105
+          }
+        }
       }
     ]
   },
   "🦩": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Flamingo",
+    "sources": [
       {
-        "name": "Flamingo",
-        "properties": [
-          { "propertyKey": "height", "value": 105, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 105
+          }
+        }
       }
     ]
   },
   "🐅": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Tiger",
+    "sources": [
       {
-        "name": "Tiger",
-        "properties": [
-          { "propertyKey": "height", "value": 110, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 110
+          }
+        }
       }
     ]
   },
   "🦌": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Deer",
+    "sources": [
       {
-        "name": "Deer",
-        "properties": [
-          { "propertyKey": "height", "value": 121, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 121
+          }
+        }
       }
     ]
   },
   "🦚": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Peacock",
+    "sources": [
       {
-        "name": "Peacock",
-        "properties": [
-          { "propertyKey": "height", "value": 130, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 130
+          }
+        }
       }
     ]
   },
   "🦛": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Hippopotamus",
+    "sources": [
       {
-        "name": "Hippopotamus",
-        "properties": [
-          { "propertyKey": "height", "value": 140, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 140
+          }
+        }
       }
     ]
   },
   "🛤️": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Railway Track",
+    "sources": [
       {
-        "name": "Railway Track",
-        "properties": [
-          { "propertyKey": "height", "value": 143, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 143
+          }
+        }
       }
     ]
   },
   "🦧": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Bornean Orangutan",
+    "sources": [
       {
-        "name": "Bornean Orangutan",
-        "properties": [
-          { "propertyKey": "height", "value": 150, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 150
+          }
+        }
       }
     ]
   },
   "💃": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Woman Dancing",
+    "sources": [
       {
-        "name": "Woman Dancing",
-        "properties": [
-          { "propertyKey": "height", "value": 159, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 159
+          }
+        }
       }
     ]
   },
   "🐄": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Cow",
+    "sources": [
       {
-        "name": "Cow",
-        "properties": [
-          { "propertyKey": "height", "value": 160, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 160
+          }
+        }
       }
     ]
   },
   "🦘": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Kangaroo",
+    "sources": [
       {
-        "name": "Kangaroo",
-        "properties": [
-          { "propertyKey": "height", "value": 160, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 160
+          }
+        }
       }
     ]
   },
   "🐎": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Horse",
+    "sources": [
       {
-        "name": "Horse",
-        "properties": [
-          { "propertyKey": "height", "value": 165, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 165
+          }
+        }
       }
     ]
   },
   "🏃": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Person Running",
+    "sources": [
       {
-        "name": "Person Running",
-        "properties": [
-          { "propertyKey": "height", "value": 165, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 165
+          }
+        }
       }
     ]
   },
   "🦙": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Llama",
+    "sources": [
       {
-        "name": "Llama",
-        "properties": [
-          { "propertyKey": "height", "value": 170, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 170
+          }
+        }
       }
     ]
   },
   "🦍": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Silverback Gorilla",
+    "sources": [
       {
-        "name": "Silverback Gorilla",
-        "properties": [
-          { "propertyKey": "height", "value": 172, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 172
+          }
+        }
       }
     ]
   },
   "🐫": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Camel",
+    "sources": [
       {
-        "name": "Camel",
-        "properties": [
-          { "propertyKey": "height", "value": 180, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 180
+          }
+        }
       }
     ]
   },
   "🚗": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Car",
+    "sources": [
       {
-        "name": "Car",
-        "properties": [
-          { "propertyKey": "height", "value": 180, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 180
+          }
+        }
       }
     ]
   },
   "🌻": {
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "Sunflower",
+    "sources": [
       {
-        "name": "Sunflower",
-        "properties": [
-          { "propertyKey": "height", "value": 180, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 180
+          }
+        }
       }
     ]
   },
   "🦏": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "White Rhinoceros",
+    "sources": [
       {
-        "name": "White Rhinoceros",
-        "properties": [
-          { "propertyKey": "height", "value": 190, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 190
+          }
+        }
       }
     ]
   },
   "🦬": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Bison",
+    "sources": [
       {
-        "name": "Bison",
-        "properties": [
-          { "propertyKey": "height", "value": 195, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 195
+          }
+        }
       }
     ]
   },
   "🧜‍♀️": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Mermaid",
+    "sources": [
       {
-        "name": "Mermaid",
-        "properties": [
-          { "propertyKey": "height", "value": 200, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 200
+          }
+        }
       }
     ]
   },
   "🚪": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Door",
+    "sources": [
       {
-        "name": "Door",
-        "properties": [
-          { "propertyKey": "height", "value": 205, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 205
+          }
+        }
       }
     ]
   },
-  "\uD83E\uDEC8": {
+  "🫈": {
     "isNew": true,
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Bigfoot",
+    "sources": [
       {
-        "name": "Bigfoot",
-        "properties": [
-          { "propertyKey": "height", "value": 244, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 244
+          }
+        }
       }
     ]
   },
   "🚒": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Fire Engine",
+    "sources": [
       {
-        "name": "Fire Engine",
-        "properties": [
-          { "propertyKey": "height", "value": 230, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 230
+          }
+        }
       }
     ]
   },
   "⛩️": {
-    "tags": ["landmarks"],
-    "representations": [
+    "tags": [
+      "landmarks"
+    ],
+    "name": "Shinto Shrine",
+    "sources": [
       {
-        "name": "Shinto Shrine",
-        "properties": [
-          { "propertyKey": "height", "value": 250, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 250
+          }
+        }
       }
     ]
   },
   "🐘": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Elephant",
+    "sources": [
       {
-        "name": "Elephant",
-        "properties": [
-          { "propertyKey": "height", "value": 320, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 320
+          }
+        }
       }
     ]
   },
   "🦣": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Mammoth",
+    "sources": [
       {
-        "name": "Mammoth",
-        "properties": [
-          { "propertyKey": "height", "value": 335, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 335
+          }
+        },
+        "url": "https://en.wikipedia.org/wiki/Woolly_mammoth",
+        "description": "A large male woolly mammoth reached a shoulder height of about 3.35 m (males averaged 2.8-3.15 m, up to ~3.5 m)."
       }
     ]
   },
   "🚝": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Monorail",
+    "sources": [
       {
-        "name": "Monorail",
-        "properties": [
-          { "propertyKey": "height", "value": 367, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 367
+          }
+        }
       }
     ]
   },
   "🗿": {
-    "tags": ["landmarks"],
-    "representations": [
+    "tags": [
+      "landmarks"
+    ],
+    "name": "Moai",
+    "sources": [
       {
-        "name": "Moai",
-        "properties": [
-          { "propertyKey": "height", "value": 400, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 400
+          }
+        }
       }
     ]
   },
   "🚂": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Locomotive",
+    "sources": [
       {
-        "name": "Locomotive",
-        "properties": [
-          { "propertyKey": "height", "value": 494, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 494
+          }
+        }
       }
     ]
   },
-  "\uD83D\uDED8": {
+  "🛘": {
     "isNew": true,
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "Landslide",
+    "sources": [
       {
-        "name": "Landslide",
-        "properties": [
-          { "propertyKey": "height", "value": 500, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 500
+          }
+        }
       }
     ]
   },
   "🚜": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Tractor",
+    "sources": [
       {
-        "name": "Tractor",
-        "properties": [
-          { "propertyKey": "height", "value": 500, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 500
+          }
+        }
       }
     ]
   },
   "🦒": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Giraffe",
+    "sources": [
       {
-        "name": "Giraffe",
-        "properties": [
-          { "propertyKey": "height", "value": 550, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 550
+          }
+        }
       }
     ]
   },
   "🦖": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "T-Rex",
+    "sources": [
       {
-        "name": "T-Rex",
-        "properties": [
-          { "propertyKey": "height", "value": 610, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 610
+          }
+        }
       }
     ]
   },
-  "\uD83E\uDECD": {
+  "🫍": {
     "isNew": true,
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Orca",
+    "sources": [
       {
-        "name": "Orca",
-        "properties": [
-          { "propertyKey": "height", "value": 750, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 750
+          }
+        }
       }
     ]
   },
   "🏠": {
-    "tags": ["landmarks"],
-    "representations": [
+    "tags": [
+      "landmarks"
+    ],
+    "name": "House",
+    "sources": [
       {
-        "name": "House",
-        "properties": [
-          { "propertyKey": "height", "value": 700, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 700
+          }
+        }
       }
     ]
   },
   "🛩️": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Small Airplane",
+    "sources": [
       {
-        "name": "Small Airplane",
-        "properties": [
-          { "propertyKey": "height", "value": 900, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 900
+          }
+        }
       }
     ]
   },
   "🌴": {
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "Palm Tree",
+    "sources": [
       {
-        "name": "Palm Tree",
-        "properties": [
-          { "propertyKey": "height", "value": 975, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 975
+          }
+        }
       }
     ]
   },
   "🚎": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Trolleybus",
+    "sources": [
       {
-        "name": "Trolleybus",
-        "properties": [
-          { "propertyKey": "height", "value": 1100, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 1100
+          }
+        }
       }
     ]
   },
   "🌵": {
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "Cactus",
+    "sources": [
       {
-        "name": "Cactus",
-        "properties": [
-          { "propertyKey": "height", "value": 1200, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 1200
+          }
+        }
       }
     ]
   },
   "🚌": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Bus",
+    "sources": [
       {
-        "name": "Bus",
-        "properties": [
-          { "propertyKey": "height", "value": 1200, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 1200
+          }
+        }
       }
     ]
   },
   "🕍": {
-    "tags": ["landmarks"],
-    "representations": [
+    "tags": [
+      "landmarks"
+    ],
+    "name": "Subotica Synagogue",
+    "sources": [
       {
-        "name": "Subotica Synagogue",
-        "properties": [
-          { "propertyKey": "height", "value": 1260, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 1260
+          }
+        }
       }
     ]
   },
   "🕋": {
-    "tags": ["landmarks"],
-    "representations": [
+    "tags": [
+      "landmarks"
+    ],
+    "name": "Kaaba",
+    "sources": [
       {
-        "name": "Kaaba",
-        "properties": [
-          { "propertyKey": "height", "value": 1310, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 1310
+          }
+        }
       }
     ]
   },
   "🚋": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Tram Car",
+    "sources": [
       {
-        "name": "Tram Car",
-        "properties": [
-          { "propertyKey": "height", "value": 1400, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 1400
+          }
+        }
       }
     ]
   },
   "🦕": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Sauropod",
+    "sources": [
       {
-        "name": "Sauropod",
-        "properties": [
-          { "propertyKey": "height", "value": 1600, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 1600
+          }
+        }
       }
     ]
   },
   "🐉": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Dragon",
+    "sources": [
       {
-        "name": "Dragon",
-        "properties": [
-          { "propertyKey": "height", "value": 1600, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 1600
+          }
+        }
       }
     ]
   },
   "🏛": {
-    "tags": ["landmarks"],
-    "representations": [
+    "tags": [
+      "landmarks"
+    ],
+    "name": "Maison Carree",
+    "sources": [
       {
-        "name": "Maison Carree",
-        "properties": [
-          { "propertyKey": "height", "value": 1700, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 1700
+          }
+        }
       }
     ]
   },
   "🐋": {
-    "tags": ["animals"],
-    "representations": [
+    "tags": [
+      "animals"
+    ],
+    "name": "Whale",
+    "sources": [
       {
-        "name": "Whale",
-        "properties": [
-          { "propertyKey": "height", "value": 2600, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 2600
+          }
+        }
       }
     ]
   },
   "✈️": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "Airplane",
+    "sources": [
       {
-        "name": "Airplane",
-        "properties": [
-          { "propertyKey": "height", "value": 3000, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 3000
+          }
+        }
       }
     ]
   },
   "🗽": {
-    "tags": ["landmarks"],
-    "representations": [
+    "tags": [
+      "landmarks"
+    ],
+    "name": "Statue of Liberty",
+    "sources": [
       {
-        "name": "Statue of Liberty",
-        "properties": [
-          { "propertyKey": "height", "value": 4600, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 4600
+          }
+        }
       }
     ]
   },
   "🏯": {
-    "tags": ["landmarks"],
-    "representations": [
+    "tags": [
+      "landmarks"
+    ],
+    "name": "Osaka Castle",
+    "sources": [
       {
-        "name": "Osaka Castle",
-        "properties": [
-          { "propertyKey": "height", "value": 5800, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 5800
+          }
+        }
       }
     ]
   },
   "🏟": {
-    "tags": ["landmarks"],
-    "representations": [
+    "tags": [
+      "landmarks"
+    ],
+    "name": "Astrodome",
+    "sources": [
       {
-        "name": "Astrodome",
-        "properties": [
-          { "propertyKey": "height", "value": 6300, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 6300
+          }
+        }
       }
     ]
   },
   "🏰": {
-    "tags": ["landmarks"],
-    "representations": [
+    "tags": [
+      "landmarks"
+    ],
+    "name": "Neuschwanstein Castle",
+    "sources": [
       {
-        "name": "Neuschwanstein Castle",
-        "properties": [
-          { "propertyKey": "height", "value": 6500, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 6500
+          }
+        }
       }
     ]
   },
   "🛰️": {
-    "tags": ["objects"],
-    "representations": [
+    "tags": [
+      "objects"
+    ],
+    "name": "ISS",
+    "sources": [
       {
-        "name": "ISS",
-        "properties": [
-          { "propertyKey": "height", "value": 7300, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 7300
+          }
+        }
       }
     ]
   },
   "🕌": {
-    "tags": ["landmarks"],
-    "representations": [
+    "tags": [
+      "landmarks"
+    ],
+    "name": "Sheikh Zayed Mosque",
+    "sources": [
       {
-        "name": "Sheikh Zayed Mosque",
-        "properties": [
-          { "propertyKey": "height", "value": 8500, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 8500
+          }
+        }
       }
     ]
   },
   "🎡": {
-    "tags": ["landmarks"],
-    "representations": [
+    "tags": [
+      "landmarks"
+    ],
+    "name": "High Roller",
+    "sources": [
       {
-        "name": "High Roller",
-        "properties": [
-          { "propertyKey": "height", "value": 16770, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 16770
+          }
+        }
       }
     ]
   },
   "🗼": {
-    "tags": ["landmarks"],
-    "representations": [
+    "tags": [
+      "landmarks"
+    ],
+    "name": "Tokyo Tower",
+    "sources": [
       {
-        "name": "Tokyo Tower",
-        "properties": [
-          { "propertyKey": "height", "value": 33300, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 33300
+          }
+        }
       }
     ]
   },
   "🏔️": {
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "Nevado de Colima",
+    "sources": [
       {
-        "name": "Nevado de Colima",
-        "properties": [
-          { "propertyKey": "height", "value": 272000, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 272000
+          }
+        }
       }
     ]
   },
   "🌋": {
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "Popocatepetl",
+    "sources": [
       {
-        "name": "Popocatepetl",
-        "properties": [
-          { "propertyKey": "height", "value": 302000, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 302000
+          }
+        }
       }
     ]
   },
   "🗻": {
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "Mount Fuji",
+    "sources": [
       {
-        "name": "Mount Fuji",
-        "properties": [
-          { "propertyKey": "height", "value": 377600, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 377600
+          }
+        }
       }
     ]
   },
   "⛰️": {
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "Everest",
+    "sources": [
       {
-        "name": "Everest",
-        "properties": [
-          { "propertyKey": "height", "value": 884800, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 884800
+          }
+        }
       }
     ]
   },
   "🗾": {
-    "tags": ["landmarks"],
-    "representations": [
+    "tags": [
+      "landmarks"
+    ],
+    "name": "Map of Japan",
+    "sources": [
       {
-        "name": "Map of Japan",
-        "properties": [
-          { "propertyKey": "height", "value": 152775000, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 152775000
+          }
+        }
       }
     ]
   },
   "🌝": {
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "The Moon",
+    "sources": [
       {
-        "name": "The Moon",
-        "properties": [
-          { "propertyKey": "height", "value": 347400000, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 347400000
+          }
+        }
       }
     ]
   },
   "🌎": {
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "Earth",
+    "sources": [
       {
-        "name": "Earth",
-        "properties": [
-          { "propertyKey": "height", "value": 1274200000, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 1274200000
+          }
+        }
       }
     ]
   },
   "🪐": {
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "Saturn",
+    "sources": [
       {
-        "name": "Saturn",
-        "properties": [
-          { "propertyKey": "height", "value": 11646400000, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 11646400000
+          }
+        }
       }
     ]
   },
   "🌞": {
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "Sun",
+    "sources": [
       {
-        "name": "Sun",
-        "properties": [
-          { "propertyKey": "height", "value": 139268000000, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 139268000000
+          }
+        }
       }
     ]
   },
   "🌌": {
-    "tags": ["nature"],
-    "representations": [
+    "tags": [
+      "nature"
+    ],
+    "name": "Milky Way",
+    "sources": [
       {
-        "name": "Milky Way",
-        "properties": [
-          { "propertyKey": "height", "value": 9.5e+22, "source": [] }
-        ]
+        "values": {
+          "height": {
+            "value": 9.5e+22
+          }
+        }
       }
     ]
   }
