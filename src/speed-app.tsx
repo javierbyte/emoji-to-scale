@@ -171,7 +171,11 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
         positions[i] = ((positions[i] ?? 0) + pxPerSec * dt) % loopWidth;
       }
 
-      tickSet((t) => (t + 1) % 1000000);
+      // Flush the new positions straight to the DOM — no React re-render.
+      emojiNodesRef.current.forEach(({ idx, dx }, node) => {
+        node.style.transform = `translateX(${(positions[idx] ?? 0) + dx}px)`;
+      });
+
       rafId = requestAnimationFrame(frame);
     }
 
@@ -225,7 +229,18 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
                 <div
                   className="emoji"
                   key={dx}
-                  style={{ transform: `translateX(${x + dx}px)` }}
+                  ref={(node) => {
+                    const map = emojiNodesRef.current;
+                    if (node) {
+                      map.set(node, { idx, dx });
+                      // Seed the transform so first paint (and any scroll-driven
+                      // re-render) is correct before the next animation frame.
+                      node.style.transform = `translateX(${x + dx}px)`;
+                    }
+                    return () => {
+                      map.delete(node);
+                    };
+                  }}
                   aria-hidden={dx !== 0}
                 >
                   {/* Motion blur: trailing copies behind the main emoji only.

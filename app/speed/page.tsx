@@ -20,9 +20,6 @@ export default function Page() {
       </header>
 
       <footer className="footer">
-        <div>
-          Scroll <span className="footer-arrow">↕</span>
-        </div>
         <div className="footer-credit">
           by <a href="https://x.com/javierbyte">@javierbyte</a>, more in{' '}
           <a href="https://javier.xyz">my website</a>. 2021-2026
