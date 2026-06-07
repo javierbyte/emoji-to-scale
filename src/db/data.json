@@ -71,24 +71,6 @@
       }
     ]
   },
-  "🐧": {
-    "tags": ["animals"],
-    "name": "Penguin",
-    "sources": [
-      {
-        "values": {
-          "height": {
-            "value": 115
-          },
-          "speed": {
-            "value": 9
-          }
-        },
-        "url": "https://en.wikipedia.org/wiki/Emperor_penguin",
-        "description": "An emperor penguin, the largest penguin, is about 115 cm tall and swims at about 6-9 km/h, with short bursts up to ~19 km/h."
-      }
-    ]
-  },
   "🛸": {
     "tags": ["objects"],
     "name": "Flying Saucer",
@@ -950,8 +932,13 @@
         "values": {
           "height": {
             "value": 35
+          },
+          "speed": {
+            "value": 14
           }
-        }
+        },
+        "url": "https://www.newlifeonahomestead.com/how-fast-can-a-chicken-run/",
+        "description": "A domestic rooster stands roughly 35 cm tall and can run at about 14 km/h (≈9 mph), with faster birds reaching well above that."
       }
     ]
   },
@@ -1125,20 +1112,6 @@
       }
     ]
   },
-  "🫯": {
-    "isNew": true,
-    "tags": ["animals"],
-    "name": "Fight Cloud",
-    "sources": [
-      {
-        "values": {
-          "height": {
-            "value": 100
-          }
-        }
-      }
-    ]
-  },
   "🐆": {
     "tags": ["animals"],
     "name": "Leopard",
@@ -1212,19 +1185,6 @@
         "values": {
           "height": {
             "value": 140
-          }
-        }
-      }
-    ]
-  },
-  "🛤️": {
-    "tags": ["objects"],
-    "name": "Railway Track",
-    "sources": [
-      {
-        "values": {
-          "height": {
-            "value": 143
           }
         }
       }

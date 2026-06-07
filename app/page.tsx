@@ -12,13 +12,14 @@ export default function Page() {
         <a href="https://javier.xyz/pokemon-to-scale/">Pokémon Version</a>
       </header>
 
-      <nav className="header header-right" aria-label="Social links">
-        <a href="https://javier.xyz">by javier.xyz</a>
-        <a href="https://x.com/javierbyte">x.com/javierbyte</a>
-      </nav>
-
       <footer className="footer">
-        Scroll <span className="footer-arrow">↓</span>
+        <div>
+          Scroll <span className="footer-arrow">↕</span>
+        </div>
+        <div className="footer-credit">
+          by <a href="https://x.com/javierbyte">@javierbyte</a>, more in{' '}
+          <a href="https://javier.xyz">my website</a>. 2021-2026
+        </div>
       </footer>
 
       <main>
