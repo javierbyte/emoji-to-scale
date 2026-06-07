@@ -89,6 +89,65 @@ a {
   transform: translateX(-50%);
 }
 
+.speed-display {
+  position: relative;
+}
+
+.speed-lane {
+  position: fixed;
+  top: calc(50vh - 70px);
+  left: 0;
+  width: 100vw;
+  height: 120px;
+  border-bottom: 1px solid #00000022;
+  will-change: transform;
+}
+
+.speed-lane .emoji {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 140px;
+  height: 140px;
+  font-size: 120px;
+  line-height: 120px;
+  align-items: center;
+  margin-bottom: 0;
+  will-change: transform;
+}
+
+/* Center the glyph in the lane and flip it so it faces its direction of travel. */
+.speed-lane .emoji span {
+  bottom: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scaleX(-1);
+}
+
+.speed-meta {
+  position: absolute;
+  left: 1rem;
+  bottom: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  font-size: 0.9rem;
+  color: #444;
+  text-align: left;
+}
+
+.speedometer {
+  position: fixed;
+  bottom: 96px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  font-size: 1.5rem;
+  letter-spacing: -1px;
+  color: #000;
+  pointer-events: none;
+}
+
 .header {
   display: flex;
   position: fixed;
