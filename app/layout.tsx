@@ -1,6 +1,15 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import localFont from 'next/font/local';
 import '../src/style.css';
+
+const brutalita = localFont({
+  src: '../src/Brutalita-400.woff2',
+  variable: '--font-brutalita',
+  weight: '400',
+  display: 'swap',
+  fallback: ['monospace'],
+});
 
 const TITLE = 'Emoji to Scale';
 const DESCRIPTION = 'Your favorite emojis. To scale (more or less).';
@@ -38,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={brutalita.variable}>
       <body>
         {children}
 

@@ -3,12 +3,6 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 
-@font-face {
-  font-family: 'Brutalita';
-  src: url('./Brutalita-400.woff2') format('woff2');
-  font-display: swap;
-}
-
 *,
 *:before,
 *:after {
@@ -36,7 +30,7 @@ body {
   touch-action: pan-y;
   background-color: #eee;
   color: #000;
-  font-family: Brutalita, monospace;
+  font-family: var(--font-brutalita), 'Courier New', Courier, monospace;
 }
 
 h1 {
@@ -142,7 +136,7 @@ a {
   top: 1rem;
   right: 1rem;
   z-index: 10;
-  font-family: Brutalita, monospace;
+  font-family: var(--font-brutalita), 'Courier New', Courier, monospace;
   font-size: 1rem;
   color: #000;
   background-color: #0000000a;
