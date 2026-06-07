@@ -1,8 +1,6 @@
 {
   "🦥": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Sloth",
     "sources": [
       {
@@ -20,9 +18,7 @@
     ]
   },
   "🐬": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Dolphin",
     "sources": [
       {
@@ -40,9 +36,7 @@
     ]
   },
   "🐊": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Crocodile",
     "sources": [
       {
@@ -60,9 +54,7 @@
     ]
   },
   "🦈": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Shark",
     "sources": [
       {
@@ -80,9 +72,7 @@
     ]
   },
   "🐧": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Penguin",
     "sources": [
       {
@@ -100,9 +90,7 @@
     ]
   },
   "🛸": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Flying Saucer",
     "sources": [
       {
@@ -117,9 +105,7 @@
     ]
   },
   "🚅": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Shinkansen",
     "sources": [
       {
@@ -134,9 +120,7 @@
     ]
   },
   "🌪️": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "Tornado",
     "sources": [
       {
@@ -151,9 +135,7 @@
     ]
   },
   "📡": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Radio Telescope",
     "sources": [
       {
@@ -168,9 +150,7 @@
     ]
   },
   "🛕": {
-    "tags": [
-      "landmarks"
-    ],
+    "tags": ["landmarks"],
     "name": "Sri Ranganathaswamy Temple",
     "sources": [
       {
@@ -185,9 +165,7 @@
     ]
   },
   "🛖": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Hut",
     "sources": [
       {
@@ -202,9 +180,7 @@
     ]
   },
   "🚁": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Helicopter",
     "sources": [
       {
@@ -219,9 +195,7 @@
     ]
   },
   "🥌": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Curling Stone",
     "sources": [
       {
@@ -236,9 +210,7 @@
     ]
   },
   "🪳": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Cockroach",
     "sources": [
       {
@@ -253,9 +225,7 @@
     ]
   },
   "🦅": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Eagle",
     "sources": [
       {
@@ -270,9 +240,7 @@
     ]
   },
   "🧌": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Troll",
     "sources": [
       {
@@ -287,9 +255,7 @@
     ]
   },
   "🏀": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Basketball",
     "sources": [
       {
@@ -304,9 +270,7 @@
     ]
   },
   "⚽": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Soccer Ball",
     "sources": [
       {
@@ -321,9 +285,7 @@
     ]
   },
   "🎾": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Tennis Ball",
     "sources": [
       {
@@ -338,9 +300,7 @@
     ]
   },
   "⚾": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Baseball",
     "sources": [
       {
@@ -355,9 +315,7 @@
     ]
   },
   "🐢": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Tortoise",
     "sources": [
       {
@@ -372,9 +330,7 @@
     ]
   },
   "🎧": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "AirPods Max",
     "sources": [
       {
@@ -389,9 +345,7 @@
     ]
   },
   "👠": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Stiletto",
     "sources": [
       {
@@ -406,9 +360,7 @@
     ]
   },
   "🌮": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Taco",
     "sources": [
       {
@@ -423,9 +375,7 @@
     ]
   },
   "🎢": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Falcon's Flight",
     "sources": [
       {
@@ -440,9 +390,7 @@
     ]
   },
   "🍣": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Nigiri",
     "sources": [
       {
@@ -457,9 +405,7 @@
     ]
   },
   "🦠": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Coronavirus",
     "sources": [
       {
@@ -472,9 +418,7 @@
     ]
   },
   "🧬": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "DNA",
     "sources": [
       {
@@ -487,9 +431,7 @@
     ]
   },
   "🦟": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Mosquito",
     "sources": [
       {
@@ -502,9 +444,7 @@
     ]
   },
   "🐜": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Ant",
     "sources": [
       {
@@ -517,9 +457,7 @@
     ]
   },
   "🪰": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Housefly",
     "sources": [
       {
@@ -532,9 +470,7 @@
     ]
   },
   "🐞": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Lady Bug",
     "sources": [
       {
@@ -547,9 +483,7 @@
     ]
   },
   "🐝": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Honeybee",
     "sources": [
       {
@@ -562,9 +496,7 @@
     ]
   },
   "🎲": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Game Die",
     "sources": [
       {
@@ -577,9 +509,7 @@
     ]
   },
   "💍": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Ring",
     "sources": [
       {
@@ -592,9 +522,7 @@
     ]
   },
   "🦷": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Tooth",
     "sources": [
       {
@@ -607,9 +535,7 @@
     ]
   },
   "📎": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Paperclip",
     "sources": [
       {
@@ -622,9 +548,7 @@
     ]
   },
   "🌸": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "Cherry Blossom",
     "sources": [
       {
@@ -637,9 +561,7 @@
     ]
   },
   "🍀": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "Four Leaf Clover",
     "sources": [
       {
@@ -652,9 +574,7 @@
     ]
   },
   "🐌": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Snail",
     "sources": [
       {
@@ -667,9 +587,7 @@
     ]
   },
   "💋": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Kiss Mark",
     "sources": [
       {
@@ -682,9 +600,7 @@
     ]
   },
   "💳": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Credit Card",
     "sources": [
       {
@@ -697,9 +613,7 @@
     ]
   },
   "🍪": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Cookie",
     "sources": [
       {
@@ -712,9 +626,7 @@
     ]
   },
   "🥚": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Egg",
     "sources": [
       {
@@ -727,9 +639,7 @@
     ]
   },
   "🐁": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Mouse",
     "sources": [
       {
@@ -742,9 +652,7 @@
     ]
   },
   "💶": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Euro Banknote",
     "sources": [
       {
@@ -757,9 +665,7 @@
     ]
   },
   "🐥": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Chick",
     "sources": [
       {
@@ -772,9 +678,7 @@
     ]
   },
   "☕️": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Cup of Coffee",
     "sources": [
       {
@@ -787,9 +691,7 @@
     ]
   },
   "📷": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Camera",
     "sources": [
       {
@@ -804,9 +706,7 @@
     ]
   },
   "💌": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Love Letter",
     "sources": [
       {
@@ -819,9 +719,7 @@
     ]
   },
   "🫀": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Heart",
     "sources": [
       {
@@ -836,9 +734,7 @@
     ]
   },
   "🌷": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "Tulip",
     "sources": [
       {
@@ -851,9 +747,7 @@
     ]
   },
   "🧉": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Mate",
     "sources": [
       {
@@ -866,9 +760,7 @@
     ]
   },
   "🐠": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Angel Fish",
     "sources": [
       {
@@ -881,9 +773,7 @@
     ]
   },
   "📏": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Straight Ruler",
     "sources": [
       {
@@ -896,9 +786,7 @@
     ]
   },
   "🧠": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Brain",
     "sources": [
       {
@@ -911,9 +799,7 @@
     ]
   },
   "📱": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Mobile Phone",
     "sources": [
       {
@@ -926,9 +812,7 @@
     ]
   },
   "🍶": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Sake",
     "sources": [
       {
@@ -941,9 +825,7 @@
     ]
   },
   "👌": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "OK Hand",
     "sources": [
       {
@@ -956,9 +838,7 @@
     ]
   },
   "🍺": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Beer Mug",
     "sources": [
       {
@@ -971,9 +851,7 @@
     ]
   },
   "🍌": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Banana",
     "sources": [
       {
@@ -986,9 +864,7 @@
     ]
   },
   "💻": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Laptop",
     "sources": [
       {
@@ -1001,9 +877,7 @@
     ]
   },
   "🫁": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Lungs",
     "sources": [
       {
@@ -1016,9 +890,7 @@
     ]
   },
   "🐈": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Cat",
     "sources": [
       {
@@ -1030,26 +902,9 @@
       }
     ]
   },
-  "😂": {
-    "tags": [
-      "animals"
-    ],
-    "name": "Face with Tears of Joy",
-    "sources": [
-      {
-        "values": {
-          "height": {
-            "value": 26
-          }
-        }
-      }
-    ]
-  },
   "🫪": {
     "isNew": true,
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Distorted Face",
     "sources": [
       {
@@ -1062,9 +917,7 @@
     ]
   },
   "💪": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Flexed Biceps",
     "sources": [
       {
@@ -1077,9 +930,7 @@
     ]
   },
   "🐡": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Blowfish",
     "sources": [
       {
@@ -1092,9 +943,7 @@
     ]
   },
   "🐓": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Rooster",
     "sources": [
       {
@@ -1107,9 +956,7 @@
     ]
   },
   "🐇": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Rabbit",
     "sources": [
       {
@@ -1122,9 +969,7 @@
     ]
   },
   "🦆": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Duck",
     "sources": [
       {
@@ -1137,9 +982,7 @@
     ]
   },
   "🔥": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "Fire",
     "sources": [
       {
@@ -1153,9 +996,7 @@
   },
   "🪎": {
     "isNew": true,
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Treasure Chest",
     "sources": [
       {
@@ -1168,9 +1009,7 @@
     ]
   },
   "🐩": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Poodle",
     "sources": [
       {
@@ -1183,9 +1022,7 @@
     ]
   },
   "🖥️": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "iMac",
     "sources": [
       {
@@ -1198,9 +1035,7 @@
     ]
   },
   "🦉": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Great Horned Owl",
     "sources": [
       {
@@ -1213,9 +1048,7 @@
     ]
   },
   "🐒": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Macaque",
     "sources": [
       {
@@ -1228,9 +1061,7 @@
     ]
   },
   "🐕": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "German Shepherd",
     "sources": [
       {
@@ -1243,9 +1074,7 @@
     ]
   },
   "🐐": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Goat",
     "sources": [
       {
@@ -1258,9 +1087,7 @@
     ]
   },
   "🐖": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Pig",
     "sources": [
       {
@@ -1273,9 +1100,7 @@
     ]
   },
   "🦤": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Dodo",
     "sources": [
       {
@@ -1288,9 +1113,7 @@
     ]
   },
   "🦦": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Otter",
     "sources": [
       {
@@ -1304,9 +1127,7 @@
   },
   "🫯": {
     "isNew": true,
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Fight Cloud",
     "sources": [
       {
@@ -1319,9 +1140,7 @@
     ]
   },
   "🐆": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Leopard",
     "sources": [
       {
@@ -1334,9 +1153,7 @@
     ]
   },
   "🦩": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Flamingo",
     "sources": [
       {
@@ -1349,9 +1166,7 @@
     ]
   },
   "🐅": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Tiger",
     "sources": [
       {
@@ -1364,9 +1179,7 @@
     ]
   },
   "🦌": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Deer",
     "sources": [
       {
@@ -1379,9 +1192,7 @@
     ]
   },
   "🦚": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Peacock",
     "sources": [
       {
@@ -1394,9 +1205,7 @@
     ]
   },
   "🦛": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Hippopotamus",
     "sources": [
       {
@@ -1409,9 +1218,7 @@
     ]
   },
   "🛤️": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Railway Track",
     "sources": [
       {
@@ -1424,9 +1231,7 @@
     ]
   },
   "🦧": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Bornean Orangutan",
     "sources": [
       {
@@ -1439,9 +1244,7 @@
     ]
   },
   "💃": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Woman Dancing",
     "sources": [
       {
@@ -1454,9 +1257,7 @@
     ]
   },
   "🐄": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Cow",
     "sources": [
       {
@@ -1469,9 +1270,7 @@
     ]
   },
   "🦘": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Kangaroo",
     "sources": [
       {
@@ -1484,9 +1283,7 @@
     ]
   },
   "🐎": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Horse",
     "sources": [
       {
@@ -1499,9 +1296,7 @@
     ]
   },
   "🏃": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Person Running",
     "sources": [
       {
@@ -1514,9 +1309,7 @@
     ]
   },
   "🦙": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Llama",
     "sources": [
       {
@@ -1529,9 +1322,7 @@
     ]
   },
   "🦍": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Silverback Gorilla",
     "sources": [
       {
@@ -1544,9 +1335,7 @@
     ]
   },
   "🐫": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Camel",
     "sources": [
       {
@@ -1559,9 +1348,7 @@
     ]
   },
   "🚗": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Car",
     "sources": [
       {
@@ -1574,9 +1361,7 @@
     ]
   },
   "🌻": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "Sunflower",
     "sources": [
       {
@@ -1589,9 +1374,7 @@
     ]
   },
   "🦏": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "White Rhinoceros",
     "sources": [
       {
@@ -1604,9 +1387,7 @@
     ]
   },
   "🦬": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Bison",
     "sources": [
       {
@@ -1619,9 +1400,7 @@
     ]
   },
   "🧜‍♀️": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Mermaid",
     "sources": [
       {
@@ -1634,9 +1413,7 @@
     ]
   },
   "🚪": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Door",
     "sources": [
       {
@@ -1650,9 +1427,7 @@
   },
   "🫈": {
     "isNew": true,
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Bigfoot",
     "sources": [
       {
@@ -1665,9 +1440,7 @@
     ]
   },
   "🚒": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Fire Engine",
     "sources": [
       {
@@ -1680,9 +1453,7 @@
     ]
   },
   "⛩️": {
-    "tags": [
-      "landmarks"
-    ],
+    "tags": ["landmarks"],
     "name": "Shinto Shrine",
     "sources": [
       {
@@ -1695,9 +1466,7 @@
     ]
   },
   "🐘": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Elephant",
     "sources": [
       {
@@ -1710,9 +1479,7 @@
     ]
   },
   "🦣": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Mammoth",
     "sources": [
       {
@@ -1727,9 +1494,7 @@
     ]
   },
   "🚝": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Monorail",
     "sources": [
       {
@@ -1742,9 +1507,7 @@
     ]
   },
   "🗿": {
-    "tags": [
-      "landmarks"
-    ],
+    "tags": ["landmarks"],
     "name": "Moai",
     "sources": [
       {
@@ -1757,9 +1520,7 @@
     ]
   },
   "🚂": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Locomotive",
     "sources": [
       {
@@ -1773,9 +1534,7 @@
   },
   "🛘": {
     "isNew": true,
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "Landslide",
     "sources": [
       {
@@ -1788,9 +1547,7 @@
     ]
   },
   "🚜": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Tractor",
     "sources": [
       {
@@ -1803,9 +1560,7 @@
     ]
   },
   "🦒": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Giraffe",
     "sources": [
       {
@@ -1818,9 +1573,7 @@
     ]
   },
   "🦖": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "T-Rex",
     "sources": [
       {
@@ -1834,9 +1587,7 @@
   },
   "🫍": {
     "isNew": true,
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Orca",
     "sources": [
       {
@@ -1849,9 +1600,7 @@
     ]
   },
   "🏠": {
-    "tags": [
-      "landmarks"
-    ],
+    "tags": ["landmarks"],
     "name": "House",
     "sources": [
       {
@@ -1864,9 +1613,7 @@
     ]
   },
   "🛩️": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Small Airplane",
     "sources": [
       {
@@ -1879,9 +1626,7 @@
     ]
   },
   "🌴": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "Palm Tree",
     "sources": [
       {
@@ -1894,9 +1639,7 @@
     ]
   },
   "🚎": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Trolleybus",
     "sources": [
       {
@@ -1909,9 +1652,7 @@
     ]
   },
   "🌵": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "Cactus",
     "sources": [
       {
@@ -1924,9 +1665,7 @@
     ]
   },
   "🚌": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Bus",
     "sources": [
       {
@@ -1939,9 +1678,7 @@
     ]
   },
   "🕍": {
-    "tags": [
-      "landmarks"
-    ],
+    "tags": ["landmarks"],
     "name": "Subotica Synagogue",
     "sources": [
       {
@@ -1954,9 +1691,7 @@
     ]
   },
   "🕋": {
-    "tags": [
-      "landmarks"
-    ],
+    "tags": ["landmarks"],
     "name": "Kaaba",
     "sources": [
       {
@@ -1969,9 +1704,7 @@
     ]
   },
   "🚋": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Tram Car",
     "sources": [
       {
@@ -1984,9 +1717,7 @@
     ]
   },
   "🦕": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Sauropod",
     "sources": [
       {
@@ -1999,9 +1730,7 @@
     ]
   },
   "🐉": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Dragon",
     "sources": [
       {
@@ -2014,9 +1743,7 @@
     ]
   },
   "🏛": {
-    "tags": [
-      "landmarks"
-    ],
+    "tags": ["landmarks"],
     "name": "Maison Carree",
     "sources": [
       {
@@ -2029,9 +1756,7 @@
     ]
   },
   "🐋": {
-    "tags": [
-      "animals"
-    ],
+    "tags": ["animals"],
     "name": "Whale",
     "sources": [
       {
@@ -2044,9 +1769,7 @@
     ]
   },
   "✈️": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "Airplane",
     "sources": [
       {
@@ -2059,9 +1782,7 @@
     ]
   },
   "🗽": {
-    "tags": [
-      "landmarks"
-    ],
+    "tags": ["landmarks"],
     "name": "Statue of Liberty",
     "sources": [
       {
@@ -2074,9 +1795,7 @@
     ]
   },
   "🏯": {
-    "tags": [
-      "landmarks"
-    ],
+    "tags": ["landmarks"],
     "name": "Osaka Castle",
     "sources": [
       {
@@ -2089,9 +1808,7 @@
     ]
   },
   "🏟": {
-    "tags": [
-      "landmarks"
-    ],
+    "tags": ["landmarks"],
     "name": "Astrodome",
     "sources": [
       {
@@ -2104,9 +1821,7 @@
     ]
   },
   "🏰": {
-    "tags": [
-      "landmarks"
-    ],
+    "tags": ["landmarks"],
     "name": "Neuschwanstein Castle",
     "sources": [
       {
@@ -2119,9 +1834,7 @@
     ]
   },
   "🛰️": {
-    "tags": [
-      "objects"
-    ],
+    "tags": ["objects"],
     "name": "ISS",
     "sources": [
       {
@@ -2134,9 +1847,7 @@
     ]
   },
   "🕌": {
-    "tags": [
-      "landmarks"
-    ],
+    "tags": ["landmarks"],
     "name": "Sheikh Zayed Mosque",
     "sources": [
       {
@@ -2149,9 +1860,7 @@
     ]
   },
   "🎡": {
-    "tags": [
-      "landmarks"
-    ],
+    "tags": ["landmarks"],
     "name": "High Roller",
     "sources": [
       {
@@ -2164,9 +1873,7 @@
     ]
   },
   "🗼": {
-    "tags": [
-      "landmarks"
-    ],
+    "tags": ["landmarks"],
     "name": "Tokyo Tower",
     "sources": [
       {
@@ -2179,9 +1886,7 @@
     ]
   },
   "🏔️": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "Nevado de Colima",
     "sources": [
       {
@@ -2194,9 +1899,7 @@
     ]
   },
   "🌋": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "Popocatepetl",
     "sources": [
       {
@@ -2209,9 +1912,7 @@
     ]
   },
   "🗻": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "Mount Fuji",
     "sources": [
       {
@@ -2224,9 +1925,7 @@
     ]
   },
   "⛰️": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "Everest",
     "sources": [
       {
@@ -2239,9 +1938,7 @@
     ]
   },
   "🗾": {
-    "tags": [
-      "landmarks"
-    ],
+    "tags": ["landmarks"],
     "name": "Map of Japan",
     "sources": [
       {
@@ -2254,9 +1951,7 @@
     ]
   },
   "🌝": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "The Moon",
     "sources": [
       {
@@ -2269,9 +1964,7 @@
     ]
   },
   "🌎": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "Earth",
     "sources": [
       {
@@ -2284,9 +1977,7 @@
     ]
   },
   "🪐": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "Saturn",
     "sources": [
       {
@@ -2299,9 +1990,7 @@
     ]
   },
   "🌞": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "Sun",
     "sources": [
       {
@@ -2314,15 +2003,13 @@
     ]
   },
   "🌌": {
-    "tags": [
-      "nature"
-    ],
+    "tags": ["nature"],
     "name": "Milky Way",
     "sources": [
       {
         "values": {
           "height": {
-            "value": 9.5e+22
+            "value": 9.5e22
           }
         }
       }
