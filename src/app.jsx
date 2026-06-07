@@ -103,7 +103,7 @@ function App() {
         role="region"
         aria-label="Emoji size comparison"
       >
-        {filteredData.map(([emoji, size, label, isNew], idx) => {
+        {filteredData.map(([emoji, size, label], idx) => {
           const compoundDistance = windowWidth / 2 + idx * emojiSpace;
 
           let relativeDistance = compoundDistance - scroll - emojiSpace / 2;
@@ -142,27 +142,16 @@ function App() {
               key={emoji}
             >
               <div
-                className={`emoji${isNew ? ' emoji-new' : ''}`}
+                className="emoji"
                 style={{
                   opacity,
                   transform: `scale(${calculatedScale}) translateY(10%)`,
                 }}
               >
-                <span className="emoji-glyph">
-                  {emoji}
-                  {isNew && (
-                    <div className="sparkle-particles">
-                      <span className="particle p1">✨</span>
-                      <span className="particle p2">✨</span>
-                      <span className="particle p3">✨</span>
-                      <span className="particle p4">✨</span>
-                      <span className="particle p5">✨</span>
-                    </div>
-                  )}
-                </span>
+                <span className="emoji-glyph">{emoji}</span>
               </div>
               <div>{parseSize(size)}</div>
-              <div>{label}{isNew && <span className="sparkle">✦</span>}</div>
+              <div>{label}</div>
             </div>
           );
         })}
