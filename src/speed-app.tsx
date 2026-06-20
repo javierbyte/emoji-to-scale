@@ -84,6 +84,15 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
   const speedometerRef = useRef<HTMLDivElement | null>(null);
   const lastSpeedTextRef = useRef('');
 
+  // Cached viewport geometry and scroll position. The per-frame loop reads these
+  // plain numbers instead of `window.*`, so it never forces a synchronous reflow.
+  // They're refreshed only by the passive scroll/resize listeners below — which
+  // matters on iOS, where the toolbar collapse keeps `vh`-based layout dirty and
+  // any in-loop `window.scrollY`/`innerHeight` read would thrash layout 60×/sec.
+  const scrollYRef = useRef(0);
+  const viewportWidthRef = useRef(0);
+  const viewportHeightRef = useRef(0);
+
   // Single source of motion: positions every lane for the given timestep and
   // flushes the result straight to the DOM. Called once for first paint and
   // then every animation frame — never schedules a React render.
@@ -91,9 +100,9 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
     (dt: number) => {
       if (data.length === 0) return;
 
-      const loopWidth = window.innerWidth || 1280;
-      const scrollY = window.scrollY;
-      const viewportHeight = window.innerHeight;
+      const loopWidth = viewportWidthRef.current || 1280;
+      const scrollY = scrollYRef.current;
+      const viewportHeight = viewportHeightRef.current;
       const referenceSpeed = getReferenceSpeed(scrollY, data);
 
       const positions = positionsRef.current;
@@ -171,12 +180,46 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
     };
   }, [data]);
 
+  // Keep the cached geometry fresh from passive listeners, so the animation loop
+  // never reads `window.*` (and never forces a reflow) on its own. `scroll` and
+  // `resize` cover desktop; `visualViewport` covers the iOS toolbar collapse,
+  // which fires `visualViewport` events but not always `window.resize`.
+  useEffect(() => {
+    if (data.length === 0) return;
+
+    const onScroll = () => {
+      scrollYRef.current = window.scrollY;
+    };
+    const onResize = () => {
+      viewportWidthRef.current = window.innerWidth;
+      viewportHeightRef.current = window.innerHeight;
+      // Body height depends on innerHeight, so keep the scroll range in sync as
+      // the toolbar changes the viewport.
+      document.body.style.height = `${getMaxScroll(data.length)}px`;
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+    const vv = window.visualViewport;
+    vv?.addEventListener('resize', onResize);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+      vv?.removeEventListener('resize', onResize);
+    };
+  }, [data]);
+
   // Seed positions/visibility and lay everything out once before first paint,
   // so initially-visible lanes show in place rather than flashing in.
   useIsomorphicLayoutEffect(() => {
     positionsRef.current = data.map(() => 0);
     visibleRef.current = data.map(() => false);
     lastSpeedTextRef.current = '';
+    // Seed cached geometry so the first paint has real values to position with.
+    scrollYRef.current = window.scrollY;
+    viewportWidthRef.current = window.innerWidth;
+    viewportHeightRef.current = window.innerHeight;
     positionAll(0);
   }, [data, positionAll]);
 
