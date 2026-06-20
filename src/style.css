@@ -91,16 +91,24 @@ a {
 
 .speed-display {
   position: relative;
+  /* Top/bottom spacers so the first and last lanes can reach screen center.
+     With lanes of height `laneSpace` (120px) in normal flow, lane i is centered
+     exactly when scrollY === i * laneSpace. */
+  padding-top: calc(50vh - 70px);
+  padding-bottom: calc(50vh - 70px);
 }
 
+/* Lanes live in normal document flow so the browser scrolls them natively — no
+   per-frame JS drives the vertical position. `content-visibility: auto` lets the
+   browser skip rendering off-screen lanes (platform-level virtualization), with
+   `contain-intrinsic-size` reserving their height so the scroll range stays right. */
 .speed-lane {
-  position: fixed;
-  top: calc(50vh - 70px);
-  left: 0;
+  position: relative;
   width: 100vw;
   height: 120px;
   border-bottom: 1px solid #00000022;
-  will-change: transform;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 120px;
 }
 
 .speed-lane .emoji {
