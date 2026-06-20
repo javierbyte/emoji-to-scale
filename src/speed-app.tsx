@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
 import type { EmojiSpeedData } from './db';
 
 // Vertical px between lanes — controls scroll-to-lane mapping and lane height.
@@ -14,7 +14,7 @@ const BASE_PX_PER_SEC = 150;
 const MAX_SPEED_RATIO = 12;
 const MIN_SPEED_RATIO = 1 / MAX_SPEED_RATIO;
 
-// Master switch for the motion-blur trail effect. Disabled for now.
+// Master switch for the motion-blur trail effect.
 const MOTION_BLUR_ENABLED = true;
 
 // Motion blur: trail copies of the main emoji behind it, spaced by relative
@@ -42,6 +42,11 @@ const EMOJI_TRANSFORMS: Record<string, string> = {
 // to face its travel direction. Rebuilt here so per-emoji transforms can be
 // appended on top of it inline.
 const GLYPH_BASE_TRANSFORM = 'translate(-50%, -50%) scaleX(-1)';
+
+// useLayoutEffect warns when run on the server; fall back to useEffect there so
+// the initial positioning pass stays pre-paint in the browser without noise.
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 // A lane is visible only while any part of it is on screen.
 function isLaneVisible(offsetY: number, viewportHeight: number): boolean {
@@ -74,71 +79,31 @@ function getReferenceSpeed(scrollY: number, data: EmojiSpeedData[]): number {
 }
 
 function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
-  const [scroll, scrollSet] = useState(0);
-  const [windowSize, windowSizeSet] = useState({ width: 0, height: 0 });
-
   // Current horizontal offset (0..loopWidth) for each lane.
   const positionsRef = useRef<number[]>([]);
   // Whether each lane was on-screen on the previous frame.
   const visibleRef = useRef<boolean[]>([]);
-  // The mounted `.emoji` wrapper nodes, mapped to the lane and copy offset they
-  // represent. The animation loop writes their transforms directly each frame,
-  // so horizontal motion never triggers a React re-render.
-  const emojiNodesRef = useRef(
-    new Map<HTMLDivElement, { idx: number; dx: number }>()
-  );
 
-  // Vertical scroll (rAF-throttled) — drives which lane is centered.
-  useEffect(() => {
-    let rafId: number | null = null;
-    function onScroll() {
-      if (rafId) return;
-      rafId = requestAnimationFrame(() => {
-        scrollSet(Math.round(window.scrollY));
-        rafId = null;
-      });
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      if (rafId) cancelAnimationFrame(rafId);
-    };
-  }, []);
+  // The mounted DOM nodes, indexed by lane. The animation loop writes their
+  // transforms / visibility directly each frame, so neither scroll nor the
+  // horizontal motion ever triggers a React re-render. The whole tree is
+  // rendered once (per `data`) and stays mounted; off-screen lanes are hidden
+  // with `display: none` so they cost no layout, paint, or compositor layers.
+  const laneNodesRef = useRef<(HTMLDivElement | null)[]>([]);
+  // Per lane: the two `.emoji` wrapper copies (primary + wrap copy).
+  const emojiNodesRef = useRef<(HTMLDivElement | null)[][]>([]);
+  // Per lane: the motion-blur trail spans on the primary copy.
+  const blurNodesRef = useRef<(HTMLSpanElement | null)[][]>([]);
+  // The speedometer readout, updated imperatively to avoid re-renders.
+  const speedometerRef = useRef<HTMLDivElement | null>(null);
+  const lastSpeedTextRef = useRef('');
 
-  // Track viewport size.
-  useEffect(() => {
-    function onResize() {
-      windowSizeSet({ width: window.innerWidth, height: window.innerHeight });
-    }
-    onResize();
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
-
-  // Set scrollable height so every lane can be brought to center.
-  useEffect(() => {
-    if (data.length === 0) return;
-    document.body.style.height = `${getMaxScroll(data.length)}px`;
-    return () => {
-      document.body.style.height = '';
-    };
-  }, [data]);
-
-  // Every lane starts at the beginning of the track and hidden.
-  useEffect(() => {
-    positionsRef.current = data.map(() => 0);
-    visibleRef.current = data.map(() => false);
-  }, [data]);
-
-  // Horizontal motion: integrate per-lane velocity over real time and loop.
-  useEffect(() => {
-    if (data.length === 0) return;
-    let rafId: number;
-    let last = performance.now();
-
-    function frame(now: number) {
-      const dt = Math.min((now - last) / 1000, 0.1); // clamp big gaps
-      last = now;
+  // Single source of motion: positions every lane for the given timestep and
+  // flushes the result straight to the DOM. Called once for first paint and
+  // then every animation frame — never schedules a React render.
+  const positionAll = useCallback(
+    (dt: number) => {
+      if (data.length === 0) return;
 
       const loopWidth = window.innerWidth || 1280;
       const scrollY = window.scrollY;
@@ -147,9 +112,14 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
 
       const positions = positionsRef.current;
       const wasVisible = visibleRef.current;
+      const laneNodes = laneNodesRef.current;
+      const emojiNodes = emojiNodesRef.current;
+      const blurNodes = blurNodesRef.current;
+
       for (let i = 0; i < data.length; i++) {
         const offsetY = (i - scrollY / laneSpace) * laneSpace;
         const visible = isLaneVisible(offsetY, viewportHeight);
+        const laneNode = laneNodes[i];
 
         // When a lane scrolls into view it adopts the current position of the
         // neighbour it's appearing next to (the one toward the center), so the
@@ -162,32 +132,113 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
               ? (positions[neighbor] ?? 0)
               : 0;
         }
+
+        // Toggle DOM visibility only on the frame it actually changes, so the
+        // layout cost is paid ~once per 120px scrolled rather than every frame.
+        if (visible !== wasVisible[i] && laneNode) {
+          laneNode.style.display = visible ? '' : 'none';
+        }
         wasVisible[i] = visible;
 
         if (!visible) continue;
 
+        // Vertical position straight to the compositor — no React involved.
+        if (laneNode) laneNode.style.transform = `translateY(${offsetY}px)`;
+
+        // Same clamped ratio drives both motion and blur spacing, so the trail
+        // tracks the emoji's on-screen speed rather than its raw real speed.
         const ratio = Math.max(
           MIN_SPEED_RATIO,
           Math.min(data[i].speed / referenceSpeed, MAX_SPEED_RATIO)
         );
         const pxPerSec = BASE_PX_PER_SEC * ratio;
-        positions[i] = ((positions[i] ?? 0) + pxPerSec * dt) % loopWidth;
+        const x = ((positions[i] ?? 0) + pxPerSec * dt) % loopWidth;
+        positions[i] = x;
+
+        // Primary copy at x, wrap copy one loop-width behind, for seamless loop.
+        const copies = emojiNodes[i];
+        if (copies) {
+          if (copies[0]) copies[0].style.transform = `translateX(${x}px)`;
+          if (copies[1]) {
+            copies[1].style.transform = `translateX(${x - loopWidth}px)`;
+          }
+        }
+
+        // Motion blur: trailing copies behind the (flipped) main glyph. Only
+        // lanes moving sufficiently faster than the reference get a trail;
+        // everything else is faded out.
+        const blurs = blurNodes[i];
+        if (blurs) {
+          if (MOTION_BLUR_ENABLED && ratio > MOTION_BLUR_MIN_RATIO) {
+            const shadowSpacing = ratio * MOTION_BLUR_SPACING;
+            const extra = EMOJI_TRANSFORMS[data[i].emoji] ?? '';
+            for (let s = 0; s < blurs.length; s++) {
+              const span = blurs[s];
+              if (!span) continue;
+              span.style.transform = `${GLYPH_BASE_TRANSFORM} translateX(${
+                (s + 1) * shadowSpacing
+              }px) ${extra}`;
+              // Fade each copy out the further it trails, so the blur reads as a
+              // streak instead of a flat haze.
+              span.style.opacity = String(
+                MOTION_BLUR_OPACITY * (1 - s / MOTION_BLUR_SHADOWS)
+              );
+            }
+          } else {
+            for (let s = 0; s < blurs.length; s++) {
+              const span = blurs[s];
+              if (span && span.style.opacity !== '0') span.style.opacity = '0';
+            }
+          }
+        }
       }
 
-      // Flush the new positions straight to the DOM — no React re-render.
-      emojiNodesRef.current.forEach(({ idx, dx }, node) => {
-        node.style.transform = `translateX(${(positions[idx] ?? 0) + dx}px)`;
-      });
+      // Speedometer readout — write only when the formatted value changes, both
+      // to skip needless DOM work and to avoid spamming the aria-live region.
+      const speedText = parseSpeed(referenceSpeed);
+      const speedometer = speedometerRef.current;
+      if (speedometer && lastSpeedTextRef.current !== speedText) {
+        speedometer.textContent = speedText;
+        lastSpeedTextRef.current = speedText;
+      }
+    },
+    [data]
+  );
 
+  // Set scrollable height so every lane can be brought to center.
+  useEffect(() => {
+    if (data.length === 0) return;
+    document.body.style.height = `${getMaxScroll(data.length)}px`;
+    return () => {
+      document.body.style.height = '';
+    };
+  }, [data]);
+
+  // Seed positions/visibility and lay everything out once before first paint,
+  // so initially-visible lanes show in place rather than flashing in.
+  useIsomorphicLayoutEffect(() => {
+    positionsRef.current = data.map(() => 0);
+    visibleRef.current = data.map(() => false);
+    lastSpeedTextRef.current = '';
+    positionAll(0);
+  }, [data, positionAll]);
+
+  // Continuous motion: integrate per-lane velocity over real time and loop.
+  useEffect(() => {
+    if (data.length === 0) return;
+    let rafId: number;
+    let last = performance.now();
+
+    function frame(now: number) {
+      const dt = Math.min((now - last) / 1000, 0.1); // clamp big gaps
+      last = now;
+      positionAll(dt);
       rafId = requestAnimationFrame(frame);
     }
 
     rafId = requestAnimationFrame(frame);
     return () => cancelAnimationFrame(rafId);
-  }, [data]);
-
-  const referenceSpeed = getReferenceSpeed(scroll, data);
-  const loopWidth = windowSize.width || 1280;
+  }, [data, positionAll]);
 
   return (
     <>
@@ -197,23 +248,6 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
         aria-label="Emoji speed comparison"
       >
         {data.map(({ emoji, speed, label }, idx) => {
-          const offsetY = (idx - scroll / laneSpace) * laneSpace;
-
-          // Don't render lanes once they're completely off-screen.
-          if (!isLaneVisible(offsetY, windowSize.height)) {
-            return null;
-          }
-
-          const x = positionsRef.current[idx] ?? 0;
-
-          // Same clamped ratio the animation uses, so blur spacing tracks the
-          // emoji's on-screen speed rather than its raw real-world speed.
-          const ratio = Math.max(
-            MIN_SPEED_RATIO,
-            Math.min(speed / referenceSpeed, MAX_SPEED_RATIO)
-          );
-          const shadowSpacing = ratio * MOTION_BLUR_SPACING;
-
           // Extra speed-renderer-only transform for this emoji, if configured.
           const extraTransform = EMOJI_TRANSFORMS[emoji] ?? '';
 
@@ -221,54 +255,42 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
             <div
               className="speed-lane"
               aria-label={`${label}, ${parseSpeed(speed)}`}
-              style={{ transform: `translateY(${offsetY}px)` }}
+              // Hidden by default; the animation loop reveals on-screen lanes.
+              style={{ display: 'none' }}
+              ref={(node) => {
+                laneNodesRef.current[idx] = node;
+              }}
               key={emoji}
             >
               <div className="speed-meta">
                 <span>{label}</span>
                 <span>{parseSpeed(speed)}</span>
               </div>
-              {[0, -loopWidth].map((dx) => (
+              {[0, 1].map((copy) => (
                 <div
                   className="emoji"
-                  key={dx}
+                  key={copy}
                   ref={(node) => {
-                    const map = emojiNodesRef.current;
-                    if (node) {
-                      map.set(node, { idx, dx });
-                      // Seed the transform so first paint (and any scroll-driven
-                      // re-render) is correct before the next animation frame.
-                      node.style.transform = `translateX(${x + dx}px)`;
-                    }
-                    return () => {
-                      map.delete(node);
-                    };
+                    (emojiNodesRef.current[idx] ||= [])[copy] = node;
                   }}
-                  aria-hidden={dx !== 0}
+                  aria-hidden={copy !== 0}
                 >
-                  {/* Motion blur: trailing copies behind the main emoji only.
-                      The glyph is flipped (scaleX(-1)) to face its travel
-                      direction, so a positive local translateX trails behind it
-                      on screen. */}
-                  {/* Only blur lanes moving sufficiently faster than the
-                      reference; slower ones get no trail. */}
+                  {/* Motion blur: trailing copies behind the main emoji, on the
+                      primary copy only. The glyph is flipped (scaleX(-1)) to
+                      face its travel direction, so a positive local translateX
+                      trails behind it on screen. Spacing/opacity are written by
+                      the animation loop; faded out when the lane isn't fast. */}
                   {MOTION_BLUR_ENABLED &&
-                    dx === 0 &&
-                    ratio > MOTION_BLUR_MIN_RATIO &&
+                    copy === 0 &&
                     Array.from({ length: MOTION_BLUR_SHADOWS }, (_, s) => (
                       <span
                         className="emoji-glyph emoji-blur"
                         key={s}
                         aria-hidden
-                        style={{
-                          transform: `${GLYPH_BASE_TRANSFORM} translateX(${
-                            (s + 1) * shadowSpacing
-                          }px) ${extraTransform}`,
-                          // Fade each copy out the further it trails, so the
-                          // blur reads as a streak instead of a flat haze.
-                          opacity:
-                            MOTION_BLUR_OPACITY * (1 - s / MOTION_BLUR_SHADOWS),
+                        ref={(node) => {
+                          (blurNodesRef.current[idx] ||= [])[s] = node;
                         }}
+                        style={{ opacity: 0 }}
                       >
                         {emoji}
                       </span>
@@ -292,9 +314,7 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
         })}
       </div>
 
-      <div className="speedometer" aria-live="polite">
-        {parseSpeed(referenceSpeed)}
-      </div>
+      <div className="speedometer" ref={speedometerRef} aria-live="polite" />
     </>
   );
 }
