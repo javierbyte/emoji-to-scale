@@ -11,6 +11,9 @@ const laneHeight = 140;
 // already racing (and so already in their correct position) before they scroll
 // into view, so a lane never pops in at a stale spot at the screen edge.
 const BUFFER_LANES = 1;
+// Vertical px over which a lane fades between transparent (at the edge) and fully
+// visible, so emojis appear from opacity rather than popping in.
+const FADE_DISTANCE = laneSpace * 1.5;
 // On-screen px/s of the *reference* (centered) emoji — the visual baseline.
 const BASE_PX_PER_SEC = 150;
 // Clamp how much faster/slower than the reference anything can visually move,
@@ -145,12 +148,28 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
         const x = ((positions[i] ?? 0) + pxPerSec * dt) % loopWidth;
         positions[i] = x;
 
+        // Fade in/out near the top and bottom edges, so emojis appear from
+        // transparent rather than popping in. Fully opaque toward the center,
+        // ramping to 0 over FADE_DISTANCE as the lane reaches the edge.
+        const opacity = Math.max(
+          0,
+          Math.min(
+            (viewportHeight / 2 + laneHeight / 2 - Math.abs(offsetY)) /
+              FADE_DISTANCE,
+            1
+          )
+        ).toFixed(3);
+
         // Primary copy at x, wrap copy one loop-width behind, for seamless loop.
         const copies = emojiNodes[i];
         if (copies) {
-          if (copies[0]) copies[0].style.transform = `translateX(${x}px)`;
+          if (copies[0]) {
+            copies[0].style.transform = `translateX(${x}px)`;
+            copies[0].style.opacity = opacity;
+          }
           if (copies[1]) {
             copies[1].style.transform = `translateX(${x - loopWidth}px)`;
+            copies[1].style.opacity = opacity;
           }
         }
       }
