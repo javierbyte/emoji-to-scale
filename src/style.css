@@ -131,15 +131,6 @@ a {
   transform: translate(-50%, -50%) scaleX(-1);
 }
 
-/* Give each motion-blur trail copy its own compositor layer. The animation
-   loop rewrites these spans' transform/opacity every scroll frame; promoting
-   them keeps those updates on the GPU instead of repainting the parent emoji
-   glyph each frame. Off-screen lanes are display:none, so no layer is created
-   for them. */
-.speed-lane .emoji .emoji-blur {
-  will-change: transform;
-}
-
 .speed-meta {
   position: absolute;
   left: 1rem;

@@ -10,21 +10,9 @@ const laneHeight = 140;
 // On-screen px/s of the *reference* (centered) emoji — the visual baseline.
 const BASE_PX_PER_SEC = 150;
 // Clamp how much faster/slower than the reference anything can visually move,
-// so extreme real-world ratios (sloth vs shark) don't blur into teleporting.
+// so extreme real-world ratios (sloth vs shark) don't visually teleport.
 const MAX_SPEED_RATIO = 12;
 const MIN_SPEED_RATIO = 1 / MAX_SPEED_RATIO;
-
-// Master switch for the motion-blur trail effect.
-const MOTION_BLUR_ENABLED = true;
-
-// Motion blur: trail copies of the main emoji behind it, spaced by relative
-// speed so faster lanes streak more. Opacity is the nearest copy's value and
-// fades linearly to ~0 at the tail. Shadow count, spacing, and opacity tunable.
-const MOTION_BLUR_SHADOWS = 4;
-const MOTION_BLUR_SPACING = 4;
-const MOTION_BLUR_OPACITY = 0.1;
-// Only lanes moving at least this much faster than the reference get a trail.
-const MOTION_BLUR_MIN_RATIO = 1.1;
 
 // Per-emoji extra CSS transforms, applied *only* in the speed renderer. The
 // value is appended after the glyph's base transform (which centers and flips
@@ -92,8 +80,6 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
   const laneNodesRef = useRef<(HTMLDivElement | null)[]>([]);
   // Per lane: the two `.emoji` wrapper copies (primary + wrap copy).
   const emojiNodesRef = useRef<(HTMLDivElement | null)[][]>([]);
-  // Per lane: the motion-blur trail spans on the primary copy.
-  const blurNodesRef = useRef<(HTMLSpanElement | null)[][]>([]);
   // The speedometer readout, updated imperatively to avoid re-renders.
   const speedometerRef = useRef<HTMLDivElement | null>(null);
   const lastSpeedTextRef = useRef('');
@@ -114,7 +100,6 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
       const wasVisible = visibleRef.current;
       const laneNodes = laneNodesRef.current;
       const emojiNodes = emojiNodesRef.current;
-      const blurNodes = blurNodesRef.current;
 
       for (let i = 0; i < data.length; i++) {
         const offsetY = (i - scrollY / laneSpace) * laneSpace;
@@ -145,8 +130,8 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
         // Vertical position straight to the compositor — no React involved.
         if (laneNode) laneNode.style.transform = `translateY(${offsetY}px)`;
 
-        // Same clamped ratio drives both motion and blur spacing, so the trail
-        // tracks the emoji's on-screen speed rather than its raw real speed.
+        // Clamped on-screen speed ratio relative to the reference lane, so the
+        // glyph tracks its visual speed rather than its raw real speed.
         const ratio = Math.max(
           MIN_SPEED_RATIO,
           Math.min(data[i].speed / referenceSpeed, MAX_SPEED_RATIO)
@@ -161,34 +146,6 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
           if (copies[0]) copies[0].style.transform = `translateX(${x}px)`;
           if (copies[1]) {
             copies[1].style.transform = `translateX(${x - loopWidth}px)`;
-          }
-        }
-
-        // Motion blur: trailing copies behind the (flipped) main glyph. Only
-        // lanes moving sufficiently faster than the reference get a trail;
-        // everything else is faded out.
-        const blurs = blurNodes[i];
-        if (blurs) {
-          if (MOTION_BLUR_ENABLED && ratio > MOTION_BLUR_MIN_RATIO) {
-            const shadowSpacing = ratio * MOTION_BLUR_SPACING;
-            const extra = EMOJI_TRANSFORMS[data[i].emoji] ?? '';
-            for (let s = 0; s < blurs.length; s++) {
-              const span = blurs[s];
-              if (!span) continue;
-              span.style.transform = `${GLYPH_BASE_TRANSFORM} translateX(${
-                (s + 1) * shadowSpacing
-              }px) ${extra}`;
-              // Fade each copy out the further it trails, so the blur reads as a
-              // streak instead of a flat haze.
-              span.style.opacity = String(
-                MOTION_BLUR_OPACITY * (1 - s / MOTION_BLUR_SHADOWS)
-              );
-            }
-          } else {
-            for (let s = 0; s < blurs.length; s++) {
-              const span = blurs[s];
-              if (span && span.style.opacity !== '0') span.style.opacity = '0';
-            }
           }
         }
       }
@@ -275,26 +232,6 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
                   }}
                   aria-hidden={copy !== 0}
                 >
-                  {/* Motion blur: trailing copies behind the main emoji, on the
-                      primary copy only. The glyph is flipped (scaleX(-1)) to
-                      face its travel direction, so a positive local translateX
-                      trails behind it on screen. Spacing/opacity are written by
-                      the animation loop; faded out when the lane isn't fast. */}
-                  {MOTION_BLUR_ENABLED &&
-                    copy === 0 &&
-                    Array.from({ length: MOTION_BLUR_SHADOWS }, (_, s) => (
-                      <span
-                        className="emoji-glyph emoji-blur"
-                        key={s}
-                        aria-hidden
-                        ref={(node) => {
-                          (blurNodesRef.current[idx] ||= [])[s] = node;
-                        }}
-                        style={{ opacity: 0 }}
-                      >
-                        {emoji}
-                      </span>
-                    ))}
                   <span
                     className="emoji-glyph"
                     style={
