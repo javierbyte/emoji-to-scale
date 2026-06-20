@@ -7,6 +7,10 @@ import type { EmojiSpeedData } from './db';
 const laneSpace = 120;
 // Height of a single lane (matches `.speed-lane` in style.css).
 const laneHeight = 140;
+// Extra lanes kept "active" beyond the visible edge, on each side. These are
+// already racing (and so already in their correct position) before they scroll
+// into view, so a lane never pops in at a stale spot at the screen edge.
+const BUFFER_LANES = 1;
 // On-screen px/s of the *reference* (centered) emoji — the visual baseline.
 const BASE_PX_PER_SEC = 150;
 // Clamp how much faster/slower than the reference anything can visually move,
@@ -36,9 +40,13 @@ const GLYPH_BASE_TRANSFORM = 'translate(-50%, -50%) scaleX(-1)';
 const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
-// A lane is visible only while any part of it is on screen.
+// A lane is "active" (worth animating) while on screen or within the buffer just
+// beyond either edge, so buffered lanes are already in position when revealed.
 function isLaneVisible(offsetY: number, viewportHeight: number): boolean {
-  return Math.abs(offsetY) <= viewportHeight / 2 + laneHeight / 2;
+  return (
+    Math.abs(offsetY) <=
+    viewportHeight / 2 + laneHeight / 2 + BUFFER_LANES * laneSpace
+  );
 }
 
 function parseSpeed(kmh: number): string {
@@ -203,10 +211,13 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
   useEffect(() => {
     if (data.length === 0) return;
     let rafId: number;
-    let last = performance.now();
+    // Lazily set on the first frame so its dt is 0. The gap between mount and the
+    // first frame (hydration) would otherwise clamp to 0.1s and make fast lanes
+    // leap ~180px on load instead of starting aligned with their neighbour.
+    let last = 0;
 
     function frame(now: number) {
-      const dt = Math.min((now - last) / 1000, 0.1); // clamp big gaps
+      const dt = last === 0 ? 0 : Math.min((now - last) / 1000, 0.1); // clamp big gaps
       last = now;
       positionAll(dt);
       rafId = requestAnimationFrame(frame);
