@@ -99,16 +99,16 @@ a {
 }
 
 /* Lanes live in normal document flow so the browser scrolls them natively — no
-   per-frame JS drives the vertical position. `content-visibility: auto` lets the
-   browser skip rendering off-screen lanes (platform-level virtualization), with
-   `contain-intrinsic-size` reserving their height so the scroll range stays right. */
+   per-frame JS drives the vertical position. The explicit `height` is what gives
+   the document its scroll range (~lane count × 120px); off-screen lanes are kept
+   cheap by gating `will-change` to on-screen lanes from the animation loop rather
+   than with `content-visibility`, which collapsed lane height in Chrome and left
+   the page unscrollable. */
 .speed-lane {
   position: relative;
   width: 100vw;
   height: 120px;
   border-bottom: 1px solid #00000022;
-  content-visibility: auto;
-  contain-intrinsic-size: auto 120px;
 }
 
 .speed-lane .emoji {
@@ -121,7 +121,8 @@ a {
   line-height: 120px;
   align-items: center;
   margin-bottom: 0;
-  will-change: transform;
+  /* `will-change: transform` is set per-frame in speed-app.tsx for on-screen
+     lanes only, so off-screen lanes don't each spawn a compositor layer. */
 }
 
 /* min-width 640 */

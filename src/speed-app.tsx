@@ -121,22 +121,35 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
         // pure math from cached scroll/viewport values — no DOM read.
         const offsetY = (i - scrollY / laneSpace) * laneSpace;
         const visible = isLaneVisible(offsetY, viewportHeight);
+        const wasVisibleLane = wasVisible[i];
+        const copies = emojiNodes[i];
 
         // When a lane scrolls into view it adopts the current position of the
         // neighbour it's appearing next to (the one toward the center), so the
         // two start aligned and the speed difference reads clearly as one pulls
-        // ahead of the other.
-        if (visible && !wasVisible[i]) {
+        // ahead of the other. It's also promoted to its own compositor layer
+        // here — only while on screen — so off-screen lanes don't each keep a
+        // layer alive (the cost `content-visibility` used to absorb).
+        if (visible && !wasVisibleLane) {
           const neighbor = offsetY < 0 ? i + 1 : i - 1;
           positions[i] =
             neighbor >= 0 && neighbor < data.length
               ? (positions[neighbor] ?? 0)
               : 0;
+          if (copies?.[0]) copies[0].style.willChange = 'transform';
+          if (copies?.[1]) copies[1].style.willChange = 'transform';
         }
 
         wasVisible[i] = visible;
 
-        if (!visible) continue;
+        if (!visible) {
+          // Drop the layer again as the lane leaves the screen.
+          if (wasVisibleLane && copies) {
+            if (copies[0]) copies[0].style.willChange = '';
+            if (copies[1]) copies[1].style.willChange = '';
+          }
+          continue;
+        }
 
         // Clamped on-screen speed ratio relative to the reference lane, so the
         // glyph tracks its visual speed rather than its raw real speed.
@@ -161,7 +174,6 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
         ).toFixed(3);
 
         // Primary copy at x, wrap copy one loop-width behind, for seamless loop.
-        const copies = emojiNodes[i];
         if (copies) {
           if (copies[0]) {
             copies[0].style.transform = `translateX(${x}px)`;
