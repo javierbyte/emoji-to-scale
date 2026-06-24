@@ -1,6 +1,12 @@
 'use client';
 
-import { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import type { EmojiSpeedData } from './db';
 
 // Vertical px between lanes — controls scroll-to-lane mapping and lane height.
@@ -89,6 +95,21 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
   // The speedometer readout, updated imperatively to avoid re-renders.
   const speedometerRef = useRef<HTMLDivElement | null>(null);
   const lastSpeedTextRef = useRef('');
+
+  // Which lanes have their source text revealed. This is the only thing that
+  // re-renders the component, and only on a (rare) click — the racing animation
+  // stays entirely imperative and untouched.
+  const [openSources, setOpenSources] = useState<Set<string>>(
+    () => new Set<string>()
+  );
+  const toggleSource = useCallback((emoji: string) => {
+    setOpenSources((prev) => {
+      const next = new Set(prev);
+      if (next.has(emoji)) next.delete(emoji);
+      else next.add(emoji);
+      return next;
+    });
+  }, []);
 
   // Cached viewport geometry and scroll position. The per-frame loop reads these
   // plain numbers instead of `window.*`, so it never forces a synchronous reflow.
@@ -265,9 +286,10 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
         role="region"
         aria-label="Emoji speed comparison"
       >
-        {data.map(({ emoji, speed, label }, idx) => {
+        {data.map(({ emoji, speed, label, source }, idx) => {
           // Extra speed-renderer-only transform for this emoji, if configured.
           const extraTransform = EMOJI_TRANSFORMS[emoji] ?? '';
+          const isOpen = openSources.has(emoji);
 
           return (
             <div
@@ -277,7 +299,37 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
             >
               <div className="speed-meta">
                 <span>{label}</span>
-                <span>{parseSpeed(speed)}</span>
+                <span>
+                  {parseSpeed(speed)}
+                  {source && (
+                    <button
+                      type="button"
+                      className="speed-source-toggle"
+                      aria-expanded={isOpen}
+                      aria-label={`Source for ${label}`}
+                      onClick={() => toggleSource(emoji)}
+                    >
+                      [?]
+                    </button>
+                  )}
+                </span>
+                {source && isOpen && (
+                  <span className="speed-source">
+                    {source.description}
+                    {source.url && (
+                      <>
+                        {' '}
+                        <a
+                          href={source.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          source
+                        </a>
+                      </>
+                    )}
+                  </span>
+                )}
               </div>
               {[0, 1].map((copy) => (
                 <div

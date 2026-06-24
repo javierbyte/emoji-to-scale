@@ -158,6 +158,31 @@ a {
   font-size: 0.9rem;
   color: #444;
   text-align: left;
+  /* The emoji glyphs are later in the DOM and race horizontally across the lane,
+     so they paint on top of this meta block. Lift it (and only it) above them so
+     the `[?]` toggle and the source link stay clickable as emojis pass over. */
+  z-index: 2;
+}
+
+.speed-source-toggle {
+  margin-left: 0.35rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: #999;
+  cursor: pointer;
+}
+.speed-source-toggle:hover {
+  color: #000;
+}
+
+.speed-source {
+  margin-top: 0.15rem;
+  max-width: min(28rem, 80vw);
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: #666;
 }
 
 .speedometer {

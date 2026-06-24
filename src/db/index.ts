@@ -62,6 +62,7 @@ export type EmojiSpeedData = {
   speed: number; // km/h
   label: string;
   tags: string[];
+  source?: { description?: string; url?: string };
 };
 
 export function getEmojiSpeedData(): EmojiSpeedData[] {
@@ -74,6 +75,10 @@ export function getEmojiSpeedData(): EmojiSpeedData[] {
         speed,
         label: entry.name,
         tags: entry.tags || [],
+        source:
+          speedSource && (speedSource.description || speedSource.url)
+            ? { description: speedSource.description, url: speedSource.url }
+            : undefined,
       };
     })
     .filter((item) => item.speed > 0)
