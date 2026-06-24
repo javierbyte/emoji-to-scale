@@ -3,7 +3,8 @@ import EmojiToSpeedApp from '../../src/speed-app';
 import { getEmojiSpeedData } from '../../src/db';
 
 const TITLE = 'Emoji to Speed';
-const DESCRIPTION = 'Your favorite emojis. Racing at relative speeds. More or less.';
+const DESCRIPTION =
+  'Your favorite emojis. Racing at relative speeds. More or less.';
 const PAGE_URL = 'https://javier.xyz/emoji-to-scale/speed';
 const IMAGE = 'https://javier.xyz/emoji-to-scale/emoji-to-speed.jpg';
 
@@ -37,7 +38,9 @@ export default function Page() {
 
       <header className="header header-left">
         <h1>Emoji to Speed</h1>
-        <a href="https://github.com/javierbyte/emoji-to-scale">Source Code</a>
+        <a href="https://github.com/javierbyte/emoji-to-scale/tree/master/app/speed">
+          Source Code
+        </a>
       </header>
 
       <footer className="footer">
