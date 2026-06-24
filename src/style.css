@@ -201,6 +201,10 @@ a {
   left: 0;
   top: auto;
   bottom: 32px;
+  /* Sit above the scrolling `.speed-display`, which is positioned and later in
+     the DOM, so it otherwise paints over the footer and swallows link clicks
+     (same z-index the header uses). */
+  z-index: 1;
   pointer-events: none;
 }
 .footer a {
