@@ -52,15 +52,6 @@ function isLaneVisible(offsetY: number, viewportHeight: number): boolean {
   );
 }
 
-// Full document scroll range for `count` lanes. The lanes themselves are
-// position:fixed and placed by JS, so the document has no flow content to give
-// it height — this is set on `document.body` (exactly like the scale page) so
-// the scrollbar spans the whole list even though only on-screen lanes paint.
-// Lane i is centered in the viewport when scrollY === i * laneSpace.
-function getScrollHeight(count: number, viewportHeight: number): number {
-  return laneSpace * count + viewportHeight - laneSpace;
-}
-
 function parseSpeed(kmh: number): string {
   if (kmh < 1) {
     return `${Math.round(kmh * 100) / 100} km/h`;
@@ -88,18 +79,13 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
   // Whether each lane was on-screen on the previous frame.
   const visibleRef = useRef<boolean[]>([]);
 
-  // The whole lane tree is rendered once (per `data`) and stays mounted. Every
-  // lane is position:fixed; the animation loop maps the native scroll position to
-  // each on-screen lane's vertical transform and writes its horizontal transform
-  // directly, so neither scroll nor the horizontal motion ever triggers a React
-  // re-render. Off-screen lanes are `display:none` (set from the loop), so they
-  // cost no layout, paint, or compositor layers — the body's explicit height is
-  // what preserves the full scroll range regardless of what's painted.
+  // The whole lane tree is rendered once (per `data`) and stays mounted. Vertical
+  // position is native scroll (CSS flow); the animation loop only writes each
+  // on-screen lane's horizontal transform directly, so neither scroll nor the
+  // horizontal motion ever triggers a React re-render. Off-screen lanes are skipped
+  // by CSS `content-visibility: auto`, so they cost no paint or compositor layers.
   // Per lane: the two `.emoji` wrapper copies (primary + wrap copy).
   const emojiNodesRef = useRef<(HTMLDivElement | null)[][]>([]);
-  // Per lane: the `.speed-lane` element itself. Vertically positioned (and shown/
-  // hidden) imperatively from the animation loop based on the native scroll.
-  const laneNodesRef = useRef<(HTMLDivElement | null)[]>([]);
   // The speedometer readout, updated imperatively to avoid re-renders.
   const speedometerRef = useRef<HTMLDivElement | null>(null);
   const lastSpeedTextRef = useRef('');
@@ -128,31 +114,28 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
       const positions = positionsRef.current;
       const wasVisible = visibleRef.current;
       const emojiNodes = emojiNodesRef.current;
-      const laneNodes = laneNodesRef.current;
 
       for (let i = 0; i < data.length; i++) {
-        // Lane i's offset from the screen center, mapped from the native scroll.
-        // Pure math from cached scroll/viewport values — no DOM read — and used
-        // both to place the lane vertically and to gate animation to on-screen ones.
+        // Vertical position is native scroll, so this offset is used only to
+        // decide which lanes are on-screen and therefore worth animating. It's
+        // pure math from cached scroll/viewport values — no DOM read.
         const offsetY = (i - scrollY / laneSpace) * laneSpace;
         const visible = isLaneVisible(offsetY, viewportHeight);
         const wasVisibleLane = wasVisible[i];
         const copies = emojiNodes[i];
-        const lane = laneNodes[i];
 
         // When a lane scrolls into view it adopts the current position of the
         // neighbour it's appearing next to (the one toward the center), so the
         // two start aligned and the speed difference reads clearly as one pulls
-        // ahead of the other. It's also painted (display) and promoted to its own
-        // compositor layer here — only while on screen — so off-screen lanes cost
-        // no layout, paint, or layer.
+        // ahead of the other. It's also promoted to its own compositor layer
+        // here — only while on screen — so off-screen lanes don't each keep a
+        // layer alive (the cost `content-visibility` used to absorb).
         if (visible && !wasVisibleLane) {
           const neighbor = offsetY < 0 ? i + 1 : i - 1;
           positions[i] =
             neighbor >= 0 && neighbor < data.length
               ? (positions[neighbor] ?? 0)
               : 0;
-          if (lane) lane.style.display = 'block';
           if (copies?.[0]) copies[0].style.willChange = 'transform';
           if (copies?.[1]) copies[1].style.willChange = 'transform';
         }
@@ -160,21 +143,12 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
         wasVisible[i] = visible;
 
         if (!visible) {
-          // Stop painting the lane and drop its layer as it leaves the screen.
-          if (wasVisibleLane) {
-            if (lane) lane.style.display = 'none';
-            if (copies?.[0]) copies[0].style.willChange = '';
-            if (copies?.[1]) copies[1].style.willChange = '';
+          // Drop the layer again as the lane leaves the screen.
+          if (wasVisibleLane && copies) {
+            if (copies[0]) copies[0].style.willChange = '';
+            if (copies[1]) copies[1].style.willChange = '';
           }
           continue;
-        }
-
-        // Vertical placement: center lane i in the viewport at scrollY = i*laneSpace.
-        // The lane box is `laneSpace` tall (see `.speed-lane` in style.css).
-        if (lane) {
-          lane.style.transform = `translateY(${
-            viewportHeight / 2 - laneSpace / 2 + offsetY
-          }px)`;
         }
 
         // Clamped on-screen speed ratio relative to the reference lane, so the
@@ -237,11 +211,6 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
     const onResize = () => {
       viewportWidthRef.current = window.innerWidth;
       viewportHeightRef.current = window.innerHeight;
-      // The scroll range lives on `document.body`'s height (the lanes are fixed),
-      // and it depends on the viewport height, so keep it in sync on resize.
-      document.body.style.height = data.length
-        ? `${getScrollHeight(data.length, window.innerHeight)}px`
-        : '';
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -253,10 +222,8 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
       vv?.removeEventListener('resize', onResize);
-      // Release the forced body height so other routes scroll normally.
-      document.body.style.height = '';
     };
-  }, [data]);
+  }, []);
 
   // Seed positions/visibility and lay everything out once before first paint,
   // so initially-visible lanes show in place rather than flashing in.
@@ -268,11 +235,6 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
     scrollYRef.current = window.scrollY;
     viewportWidthRef.current = window.innerWidth;
     viewportHeightRef.current = window.innerHeight;
-    // Establish the scroll range before first paint so the scrollbar is correct
-    // immediately and the seeding pass can place lanes against a real viewport.
-    document.body.style.height = data.length
-      ? `${getScrollHeight(data.length, window.innerHeight)}px`
-      : '';
     positionAll(0);
   }, [data, positionAll]);
 
@@ -312,9 +274,6 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
               className="speed-lane"
               aria-label={`${label}, ${parseSpeed(speed)}`}
               key={emoji}
-              ref={(node) => {
-                laneNodesRef.current[idx] = node;
-              }}
             >
               <div className="speed-meta">
                 <span>{label}</span>
