@@ -1,12 +1,7 @@
 'use client';
 
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
+import type { CSSProperties } from 'react';
 import type { EmojiSpeedData } from './db';
 
 // Vertical px between lanes — controls scroll-to-lane mapping and lane height.
@@ -27,9 +22,11 @@ const BASE_PX_PER_SEC = 150;
 const MAX_SPEED_RATIO = 12;
 const MIN_SPEED_RATIO = 1 / MAX_SPEED_RATIO;
 
-// Per-emoji extra CSS transforms, applied *only* in the speed renderer. The
-// value is appended after the glyph's base transform (which centers and flips
-// it to face its direction of travel), so use relative ops like rotate/scale.
+// Per-emoji extra CSS transforms, applied *only* in the speed renderer. Fed to
+// the `--emoji-extra-transform` custom property, which `.speed-lane .emoji span`
+// appends after the glyph's base transform (centered, and flipped to face its
+// direction of travel) — so use relative ops like rotate/scale. Going through a
+// custom property means the base transform lives in exactly one place, the CSS.
 const EMOJI_TRANSFORMS: Record<string, string> = {
   '🚀': 'rotate(135deg) scaleY(-100%)',
   '🌎': 'scaleX(-100%)',
@@ -39,10 +36,13 @@ const EMOJI_TRANSFORMS: Record<string, string> = {
   '🛫': 'scaleX(-100%)',
 };
 
-// Base transform every lane glyph already gets from CSS: centered and flipped
-// to face its travel direction. Rebuilt here so per-emoji transforms can be
-// appended on top of it inline.
-const GLYPH_BASE_TRANSFORM = 'translate(-50%, -50%) scaleX(-1)';
+// Lane geometry is authored here and pushed to CSS as custom properties on the
+// `.speed-display` root (see the render below), so the JS math and the
+// stylesheet can't drift apart.
+const LANE_GEOMETRY_VARS = {
+  '--lane-space': `${laneSpace}px`,
+  '--lane-height': `${laneHeight}px`,
+} as CSSProperties;
 
 // useLayoutEffect warns when run on the server; fall back to useEffect there so
 // the initial positioning pass stays pre-paint in the browser without noise.
@@ -88,28 +88,14 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
   // The whole lane tree is rendered once (per `data`) and stays mounted. Vertical
   // position is native scroll (CSS flow); the animation loop only writes each
   // on-screen lane's horizontal transform directly, so neither scroll nor the
-  // horizontal motion ever triggers a React re-render. Off-screen lanes are skipped
-  // by CSS `content-visibility: auto`, so they cost no paint or compositor layers.
+  // horizontal motion ever triggers a React re-render. The component holds no
+  // state at all — source disclosure is a native <details> — so after mount it
+  // never re-renders and these refs are stable for the lifetime of the page.
   // Per lane: the two `.emoji` wrapper copies (primary + wrap copy).
   const emojiNodesRef = useRef<(HTMLDivElement | null)[][]>([]);
   // The speedometer readout, updated imperatively to avoid re-renders.
   const speedometerRef = useRef<HTMLDivElement | null>(null);
   const lastSpeedTextRef = useRef('');
-
-  // Which lanes have their source text revealed. This is the only thing that
-  // re-renders the component, and only on a (rare) click — the racing animation
-  // stays entirely imperative and untouched.
-  const [openSources, setOpenSources] = useState<Set<string>>(
-    () => new Set<string>()
-  );
-  const toggleSource = useCallback((emoji: string) => {
-    setOpenSources((prev) => {
-      const next = new Set(prev);
-      if (next.has(emoji)) next.delete(emoji);
-      else next.add(emoji);
-      return next;
-    });
-  }, []);
 
   // Cached viewport geometry and scroll position. The per-frame loop reads these
   // plain numbers instead of `window.*`, so it never forces a synchronous reflow.
@@ -283,54 +269,53 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
     <>
       <div
         className="speed-display"
+        style={LANE_GEOMETRY_VARS}
         role="region"
         aria-label="Emoji speed comparison"
       >
         {data.map(({ emoji, speed, label, source }, idx) => {
           // Extra speed-renderer-only transform for this emoji, if configured.
-          const extraTransform = EMOJI_TRANSFORMS[emoji] ?? '';
-          const isOpen = openSources.has(emoji);
+          const extraTransform = EMOJI_TRANSFORMS[emoji];
+          const speedText = parseSpeed(speed);
 
           return (
-            <div
-              className="speed-lane"
-              aria-label={`${label}, ${parseSpeed(speed)}`}
-              key={emoji}
-            >
+            <div className="speed-lane" key={emoji}>
               <div className="speed-meta">
                 <span>{label}</span>
-                <span>
-                  {parseSpeed(speed)}
-                  {source && (
-                    <button
-                      type="button"
-                      className="speed-source-toggle"
-                      aria-expanded={isOpen}
-                      aria-label={`Source for ${label}`}
-                      onClick={() => toggleSource(emoji)}
-                    >
-                      [?]
-                    </button>
-                  )}
-                </span>
-                {source && isOpen && (
-                  <span className="speed-source">
-                    {source.description}
-                    {source.url && (
-                      <>
-                        {' '}
-                        <a
-                          href={source.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          source
-                        </a>
-                      </>
-                    )}
-                  </span>
+                {/* Native <details> rather than a React-state toggle: it keeps
+                    this component stateless (so it never re-renders after mount)
+                    and puts every source citation in the server-rendered HTML.
+                    The whole speed line is the <summary> — an inline-block
+                    <details> takes its baseline from its last line box, which
+                    would visibly shift `[?]` upward when the panel opens. */}
+                {source ? (
+                  <details className="speed-source-details">
+                    <summary>
+                      {speedText} <span className="speed-source-toggle">[?]</span>
+                    </summary>
+                    <span className="speed-source">
+                      {source.description}
+                      {source.url && (
+                        <>
+                          {' '}
+                          <a
+                            href={source.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            source
+                          </a>
+                        </>
+                      )}
+                    </span>
+                  </details>
+                ) : (
+                  <span>{speedText}</span>
                 )}
               </div>
+              {/* Both copies are aria-hidden: the lane's name and speed are
+                  already real text in `.speed-meta`, so exposing the glyphs
+                  would just announce "snail" on top of "Snail, 0.05 km/h". */}
               {[0, 1].map((copy) => (
                 <div
                   className="emoji"
@@ -338,15 +323,15 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
                   ref={(node) => {
                     (emojiNodesRef.current[idx] ||= [])[copy] = node;
                   }}
-                  aria-hidden={copy !== 0}
+                  aria-hidden
                 >
                   <span
                     className="emoji-glyph"
                     style={
                       extraTransform
-                        ? {
-                            transform: `${GLYPH_BASE_TRANSFORM} ${extraTransform}`,
-                          }
+                        ? ({
+                            '--emoji-extra-transform': extraTransform,
+                          } as CSSProperties)
                         : undefined
                     }
                   >
@@ -359,7 +344,11 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
         })}
       </div>
 
-      <div className="speedometer" ref={speedometerRef} aria-live="polite" />
+      {/* No `aria-live`: this updates many times per second while scrolling, and
+          polite announcements queue rather than replace — a screen reader would
+          fall ever further behind reading a backlog of intermediate speeds. The
+          per-lane speeds are static text in `.speed-meta` instead. */}
+      <div className="speedometer" ref={speedometerRef} />
     </>
   );
 }

@@ -97,13 +97,22 @@ a {
   transform: translateX(-50%);
 }
 
+/* `--lane-space` and `--lane-height` are set inline on this element from the
+   constants in speed-app.tsx, which stay the single source of truth for the
+   geometry the animation math depends on. They inherit to the rules below. */
 .speed-display {
   position: relative;
   /* Top/bottom spacers so the first and last lanes can reach screen center.
-     With lanes of height `laneSpace` (120px) in normal flow, lane i is centered
-     exactly when scrollY === i * laneSpace. */
-  padding-top: calc(50vh - 70px);
-  padding-bottom: calc(50vh - 70px);
+     With lanes of height `laneSpace` in normal flow, lane i is centered exactly
+     when scrollY === i * laneSpace. The offset is half the *emoji* height, not
+     half the lane's: the glyph box is taller than the lane and absolutely
+     positioned at its top, so its center sits `--lane-height / 2` down.
+
+     Deliberately `vh`, not `dvh`. On iOS `dvh` would change the document height
+     as the toolbar collapses, jumping the scroll position mid-scroll. The
+     resulting drift from `window.innerHeight` is the lesser evil. */
+  padding-top: calc(50vh - var(--lane-height) / 2);
+  padding-bottom: calc(50vh - var(--lane-height) / 2);
 }
 
 /* Lanes live in normal document flow so the browser scrolls them natively — no
@@ -115,7 +124,7 @@ a {
 .speed-lane {
   position: relative;
   width: 100vw;
-  height: 120px;
+  height: var(--lane-space);
   border-bottom: 1px solid #00000022;
 }
 
@@ -123,8 +132,8 @@ a {
   position: absolute;
   left: 0;
   top: 0;
-  width: 140px;
-  height: 140px;
+  width: var(--lane-height);
+  height: var(--lane-height);
   font-size: 120px;
   line-height: 120px;
   align-items: center;
@@ -140,12 +149,18 @@ a {
   }
 }
 
-/* Center the glyph in the lane and flip it so it faces its direction of travel. */
+/* Center the glyph in the lane and flip it so it faces its direction of travel.
+   `--emoji-extra-transform` is the per-emoji override from EMOJI_TRANSFORMS in
+   speed-app.tsx; it defaults to a no-op here so the component only ever sets the
+   property and never restates this base transform. Note the glyph is selected as
+   `.emoji span`, not `.emoji-glyph` — a `.speed-lane .emoji-glyph` rule would be
+   one specificity point lower and would silently lose to this one. */
 .speed-lane .emoji span {
   bottom: auto;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scaleX(-1);
+  --emoji-extra-transform: translate(0);
+  transform: translate(-50%, -50%) scaleX(-1) var(--emoji-extra-transform);
 }
 
 .speed-meta {
@@ -164,20 +179,35 @@ a {
   z-index: 2;
 }
 
+/* The speed line doubles as the disclosure control. `display: block` keeps it a
+   plain flex child of `.speed-meta` (identical layout to the old inline button),
+   and the marker is suppressed twice over: `list-style` covers Chrome/Firefox,
+   while Safari's `::-webkit-details-marker` is a separate pseudo-element that
+   survives `display: block`. */
+.speed-source-details summary {
+  display: block;
+  cursor: pointer;
+  list-style: none;
+}
+.speed-source-details summary::-webkit-details-marker {
+  display: none;
+}
+.speed-source-details summary::marker {
+  content: '';
+}
+
 .speed-source-toggle {
   margin-left: 0.35rem;
-  padding: 0;
-  border: 0;
-  background: none;
-  font: inherit;
   color: #999;
-  cursor: pointer;
 }
-.speed-source-toggle:hover {
+.speed-source-details summary:hover .speed-source-toggle {
   color: #000;
 }
 
 .speed-source {
+  /* Block, because inside <details> it is no longer a flex item of
+     `.speed-meta` and would otherwise lay out inline and ignore max-width. */
+  display: block;
   margin-top: 0.15rem;
   max-width: min(28rem, 80vw);
   font-size: 0.8rem;
