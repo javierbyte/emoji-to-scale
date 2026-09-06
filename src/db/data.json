@@ -286,7 +286,7 @@
           }
         },
         "url": "https://www.foxweather.com/learn/how-tall-is-a-tornado",
-        "description": "A tornado's visible funnel reaches from the ground to the storm's cloud base; tall tornadoes top out around 1,500 m. There is no official record for funnel height."
+        "description": "Tall tornado funnels can reach roughly 1,500 m, from ground to cloud base; no official height record exists."
       },
       {
         "values": {
@@ -391,7 +391,7 @@
           }
         },
         "url": "https://en.wikipedia.org/wiki/American_cockroach",
-        "description": "An adult American cockroach is about 4 cm in body length (the largest common house cockroach) and has been clocked at 5.4 km/h — roughly 50 body lengths per second."
+        "description": "An American cockroach is about 4 cm long and can run at 5.4 km/h — roughly 50 body lengths per second."
       }
     ]
   },
@@ -559,10 +559,13 @@
         "values": {
           "height": {
             "value": 16300
+          },
+          "speed": {
+            "value": 250
           }
         },
         "url": "https://en.wikipedia.org/wiki/Falcons_Flight",
-        "description": "Falcon's Flight at Six Flags Qiddiya City, the world's tallest operating roller coaster (opened Dec 2025), has a structure height of 163 m and reaches a top speed of 250 km/h (155 mph) — the fastest of any coaster."
+        "description": "Falcon's Flight at Six Flags Qiddiya City stands 163 m tall and reaches 250 km/h."
       }
     ]
   },
@@ -629,6 +632,15 @@
     "tags": ["animals"],
     "name": "Ant",
     "sources": [
+      {
+        "values": {
+          "speed": {
+            "value": 0.396
+          }
+        },
+        "url": "https://journals.biologists.com/jeb/article/217/13/2358/12278/Level-locomotion-in-wood-ants-evidence-for",
+        "description": "Wood ants preferred about 11 cm/s (0.396 km/h) in a level-walking study; this is not their maximum speed."
+      },
       {
         "values": {
           "height": {
@@ -1829,7 +1841,7 @@
           }
         },
         "url": "https://en.wikipedia.org/wiki/Woolly_mammoth",
-        "description": "A large male woolly mammoth reached a shoulder height of about 3.35 m (males averaged 2.8-3.15 m, up to ~3.5 m); its build suggests a top speed comparable to a modern elephant, roughly 40 km/h."
+        "description": "A large male woolly mammoth stood about 3.35 m tall; its estimated top speed is roughly 40 km/h, like an elephant."
       }
     ]
   },
@@ -1878,7 +1890,7 @@
           }
         },
         "url": "https://en.wikipedia.org/wiki/Mallard_(locomotive)",
-        "description": "Taking the LNER Mallard as the iconic steam locomotive, it set the world steam speed record of 203 km/h (126 mph) in 1938 — a record that still stands."
+        "description": "The LNER Mallard set the steam locomotive speed record of 203 km/h (126 mph) in 1938."
       }
     ]
   },
@@ -2285,10 +2297,13 @@
         "values": {
           "height": {
             "value": 16770
+          },
+          "speed": {
+            "value": 1.1
           }
         },
         "url": "https://en.wikipedia.org/wiki/High_Roller_(Ferris_wheel)",
-        "description": "The High Roller observation wheel turns at a leisurely ~1.1 km/h (about one foot per second), completing a rotation in roughly 30 minutes."
+        "description": "Las Vegas's High Roller stands 167.6 m tall and turns at about 1.1 km/h, completing a rotation in 30 minutes."
       }
     ]
   },
@@ -2442,6 +2457,36 @@
       }
     ]
   },
+  "⚡": {
+    "tags": ["nature"],
+    "name": "Lightning",
+    "sources": [
+      {
+        "values": {
+          "speed": {
+            "value": 321868800
+          }
+        },
+        "url": "https://www.weather.gov/safety/lightning-science-negative-charged-flash",
+        "description": "Lightning's return stroke travels at about 321,868,800 km/h; its initial leader is slower. This is not light speed."
+      }
+    ]
+  },
+  "💡": {
+    "tags": ["nature"],
+    "name": "Light (c)",
+    "sources": [
+      {
+        "values": {
+          "speed": {
+            "value": 1079252848.8
+          }
+        },
+        "url": "https://physics.nist.gov/cuu/Constants/Value/c.html",
+        "description": "Light in vacuum travels at exactly 299,792,458 m/s (the constant c). The universe’s speed limit."
+      }
+    ]
+  },
   "🌌": {
     "tags": ["nature"],
     "name": "Milky Way",
@@ -2457,6 +2502,55 @@
         },
         "url": "https://en.wikipedia.org/wiki/Milky_Way",
         "description": "The Milky Way moves at about 1,987,000 km/h (552 km/s) relative to the cosmic microwave background."
+      }
+    ]
+  },
+  "🪱": {
+    "tags": [
+      "animals"
+    ],
+    "name": "Earthworm",
+    "sources": [
+      {
+        "values": {
+          "speed": {
+            "value": 0.018
+          }
+        },
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0003472",
+        "description": "A study of 18 earthworms found an average surface crawling speed of about 30 cm/min (0.018 km/h)."
+      }
+    ]
+  },
+  "🪼": {
+    "tags": ["animals"],
+    "name": "Jellyfish",
+    "sources": [
+      {
+        "values": {
+          "speed": {
+            "value": 0.072
+          }
+        },
+        "url": "https://www.caltech.edu/about/news/bionic-jellyfish-swim-faster-and-more-efficiently",
+        "description": "Caltech reports typical jellyfish swimming at about 2 cm/s (0.072 km/h), excluding drifting or stimulation."
+      }
+    ]
+  },
+  "🕷️": {
+    "tags": [
+      "animals"
+    ],
+    "name": "Tarantula (10°C)",
+    "sources": [
+      {
+        "values": {
+          "speed": {
+            "value": 0.14832
+          }
+        },
+        "url": "https://academic.oup.com/biolinnean/article/135/4/708/6517052",
+        "description": "Male G. vachoni tarantulas averaged 4.12 cm/s (0.14832 km/h) in sprints at 10°C; warmer conditions affect speed."
       }
     ]
   }

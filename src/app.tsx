@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { CATEGORIES, type EmojiData } from './db';
 
 const emojiSpace = 300;
@@ -16,10 +16,6 @@ function parseSize(size: number): string {
     return `${Math.round(size * 100) / 100 / 100}m`;
   }
   return `${Math.round(size / 100 / 10) / 100}km`;
-}
-
-function getMaxScroll(itemCount: number): number {
-  return emojiSpace * itemCount + window.innerHeight - emojiSpace;
 }
 
 function EmojiToScale({
@@ -43,6 +39,7 @@ function EmojiToScale({
       });
     }
     window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
     return () => {
       window.removeEventListener('scroll', onScroll);
@@ -64,18 +61,30 @@ function EmojiToScale({
     return data.filter((item) => item.tags.includes(category));
   }, [data, category]);
 
-  useEffect(() => {
-    if (filteredData.length === 0) return;
-    const prevMax = prevMaxScrollRef.current;
-    const pct = prevMax > 0 ? window.scrollY / prevMax : 0;
+  useLayoutEffect(() => {
+    const originalHeight = document.body.style.height;
+    return () => {
+      document.body.style.height = originalHeight;
+    };
+  }, []);
 
-    const newMax = getMaxScroll(filteredData.length);
-    document.body.style.height = `${newMax}px`;
+  useLayoutEffect(() => {
+    const prevMax = prevMaxScrollRef.current;
+    const pct = prevMax > 0 ? Math.min(1, Math.max(0, window.scrollY / prevMax)) : 0;
+
+    const newMax = emojiSpace * Math.max(0, filteredData.length - 1);
+    const updateHeight = () => {
+      document.body.style.height = `${newMax + window.innerHeight}px`;
+    };
+    updateHeight();
     prevMaxScrollRef.current = newMax;
 
     if (prevMax > 0) {
       window.scrollTo(0, pct * newMax);
     }
+    scrollSet(Math.round(window.scrollY));
+    window.addEventListener('resize', updateHeight);
+    return () => window.removeEventListener('resize', updateHeight);
   }, [filteredData]);
 
   let floatScale = 1;

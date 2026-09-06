@@ -4,10 +4,12 @@ import {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
 import type { EmojiSpeedData } from './db';
+import { SPEED_CATEGORIES } from './speed-categories';
 
 // Vertical px between lanes — controls scroll-to-lane mapping and lane height.
 const laneSpace = 120;
@@ -22,9 +24,10 @@ const BUFFER_LANES = 1;
 const FADE_DISTANCE = laneSpace * 1.5;
 // On-screen px/s of the *reference* (centered) emoji — the visual baseline.
 const BASE_PX_PER_SEC = 150;
-// Clamp how much faster/slower than the reference anything can visually move,
-// so extreme real-world ratios (sloth vs shark) don't visually teleport.
-const MAX_SPEED_RATIO = 12;
+// Tune this one number to widen/narrow the visual speed range: 30 allows
+// 30x faster and 30x slower than the centered emoji (150 px/s).
+// Extreme real-world ratios are still capped to limit visual teleporting.
+const MAX_SPEED_RATIO = 30;
 const MIN_SPEED_RATIO = 1 / MAX_SPEED_RATIO;
 
 // Per-emoji extra CSS transforms, applied *only* in the speed renderer. The
@@ -79,7 +82,7 @@ function getReferenceSpeed(scrollY: number, data: EmojiSpeedData[]): number {
   return progress * data[ceilIdx].speed + (1 - progress) * data[floorIdx].speed;
 }
 
-function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
+function EmojiToSpeed({ data }: { data: EmojiSpeedData[] }) {
   // Current horizontal offset (0..loopWidth) for each lane.
   const positionsRef = useRef<number[]>([]);
   // Whether each lane was on-screen on the previous frame.
@@ -297,7 +300,9 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
               aria-label={`${label}, ${parseSpeed(speed)}`}
               key={emoji}
             >
-              <div className="speed-meta">
+              <div
+                className={`speed-meta${isOpen ? ' speed-meta--open' : ''}`}
+              >
                 <span>{label}</span>
                 <span>
                   {parseSpeed(speed)}
@@ -364,4 +369,32 @@ function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
   );
 }
 
-export default EmojiToSpeedApp;
+export default function EmojiToSpeedApp({ data }: { data: EmojiSpeedData[] }) {
+  const [category, setCategory] = useState('');
+  const filteredData = useMemo(() => {
+    const selected = SPEED_CATEGORIES.find((item) => item.id === category);
+    return selected ? data.filter(selected.includes) : data;
+  }, [data, category]);
+
+  return (
+    <>
+      <EmojiToSpeed key={category} data={filteredData} />
+      <select
+        className="category-select speed-category-select"
+        aria-label="Speed comparison category"
+        value={category}
+        onChange={(event) => {
+          window.scrollTo(0, 0);
+          setCategory(event.target.value);
+        }}
+      >
+        <option value="">All</option>
+        {SPEED_CATEGORIES.map(({ id, label }) => (
+          <option key={id} value={id}>
+            {label}
+          </option>
+        ))}
+      </select>
+    </>
+  );
+}

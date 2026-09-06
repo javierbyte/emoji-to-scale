@@ -131,6 +131,11 @@ a {
   margin-bottom: 0;
   /* `will-change: transform` is set per-frame in speed-app.tsx for on-screen
      lanes only, so off-screen lanes don't each spawn a compositor layer. */
+  /* Purely decorative: let clicks fall through to the `.speed-meta` beneath, so
+     the source toggle/link stay clickable without lifting the meta above these
+     composited (`will-change`) glyphs — which would promote every visible lane's
+     meta to its own layer and cost scroll perf. */
+  pointer-events: none;
 }
 
 /* min-width 640 */
@@ -158,9 +163,13 @@ a {
   font-size: 0.9rem;
   color: #444;
   text-align: left;
-  /* The emoji glyphs are later in the DOM and race horizontally across the lane,
-     so they paint on top of this meta block. Lift it (and only it) above them so
-     the `[?]` toggle and the source link stay clickable as emojis pass over. */
+}
+
+/* Only while a source is revealed: lift this lane's meta above the racing glyphs
+   so the expanded text isn't painted over by a passing emoji. Clickability is
+   already handled by `pointer-events: none` on the glyphs, so the collapsed
+   (common) state needs no stacking layer — only the 1–2 open lanes get one. */
+.speed-meta--open {
   z-index: 2;
 }
 
@@ -261,6 +270,12 @@ a {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23000'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 10px center;
+}
+
+@media screen and (max-width: 640px) {
+  .category-select.speed-category-select {
+    top: 6rem;
+  }
 }
 
 @media screen and (max-width: 1200px) {
