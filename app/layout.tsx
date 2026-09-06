@@ -18,7 +18,11 @@ const IMAGE = 'https://javier.xyz/emoji-to-scale/emoji-to-scale.jpg';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://javier.xyz/emoji-to-scale'),
-  title: TITLE,
+  // `default` covers pages with no title of their own (`/`); `template` suffixes
+  // the ones that do (`/speed`) so sibling pages read as one site in SERPs.
+  // Note this applies to <title> only — both pages set `openGraph.title`
+  // explicitly, so social previews are unaffected.
+  title: { default: TITLE, template: `%s · ${TITLE}` },
   description: DESCRIPTION,
   alternates: {
     canonical: PAGE_URL,
@@ -51,12 +55,16 @@ export default function RootLayout({
       <body>
         {children}
 
-        {/* Global site tag (gtag.js) - Google Analytics */}
+        {/* Global site tag (gtag.js) - Google Analytics.
+            `lazyOnload`: gtag.js is by far the largest script on these pages,
+            whose own bundles are tiny, so deferring it to idle keeps it off the
+            critical path. Load order doesn't matter — the inline config below
+            queues into `dataLayer`, which gtag.js drains whenever it arrives. */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-M2FT27FXS2"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="ga" strategy="afterInteractive">
+        <Script id="ga" strategy="lazyOnload">
           {`window.dataLayer = window.dataLayer || [];
 function gtag() {
   dataLayer.push(arguments);

@@ -41,6 +41,11 @@ export default function Page() {
         <a href="https://github.com/javierbyte/emoji-to-scale/tree/master/app/speed">
           Source Code
         </a>
+        {/* Plain <a>, not next/link, on purpose: the scale app sets
+            `document.body.style.height` without cleanup, so a client-side
+            navigation would leave that height behind and break this page's
+            scroll range (which comes purely from `.speed-display` flow). */}
+        <a href="/emoji-to-scale">Scale Version</a>
       </header>
 
       <footer className="footer">
@@ -51,10 +56,6 @@ export default function Page() {
       </footer>
 
       <main>
-        <noscript>
-          <h1>Emoji to Speed</h1>
-          <p>Your favorite emojis. Racing at relative speeds.</p>
-        </noscript>
         <EmojiToSpeedApp data={data} />
       </main>
     </>
